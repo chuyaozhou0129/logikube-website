@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LogiKube — AI Service Agency</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;1,300&family=Outfit:wght@200;300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: {
+              DEFAULT: '#a78bfa',
+              dark: '#7c3aed',
+              light: '#c4b5fd',
+            },
+            deep: '#0e0715',
+            surface: '#1a0a2e',
+            offwhite: '#faf8ff',
+            fg: '#e8e4f0',
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            space: ['"Space Mono"', 'monospace'],
+            dm: ['"DM Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0e0715; color: #e8e4f0; overflow-x: hidden; cursor: none; }
+    * { cursor: none !important; }
+
+    /* Custom Cursor */
+    #lk-cursor {
+      position: fixed; width: 10px; height: 10px; background: #a78bfa; border-radius: 50%;
+      pointer-events: none; z-index: 99999; transform: translate(-50%, -50%);
+      transition: transform 0.08s, width 0.2s, height 0.2s, opacity 0.2s; mix-blend-mode: screen;
+    }
+    #lk-ring {
+      position: fixed; width: 36px; height: 36px; border: 1px solid rgba(167,139,250,0.45);
+      border-radius: 50%; pointer-events: none; z-index: 99998; transform: translate(-50%, -50%);
+      transition: width 0.25s, height 0.25s, border-color 0.25s;
+    }
+
+    /* Particles */
+    #lk-canvas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0e0715; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.25); border-radius: 2px; }
+
+    /* Grid overlay */
+    .lk-grid {
+      position: absolute; inset: 0; pointer-events: none;
+      background-image:
+        linear-gradient(rgba(167,139,250,0.045) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(167,139,250,0.045) 1px, transparent 1px);
+      background-size: 72px 72px;
+      animation: gridPulse 10s ease-in-out infinite;
+    }
+    @keyframes gridPulse { 0%,100% { opacity: .5; } 50% { opacity: 1; } }
+
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+
+    /* Blob animations */
+    @keyframes blobA { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(-30px,25px) scale(1.04); } 66% { transform: translate(25px,-18px) scale(.97); } }
+    @keyframes blobB { 0%,100% { transform: translate(0,0); } 50% { transform: translate(20px,-30px); } }
+    @keyframes floatA { 0%,100% { transform: translateY(0) rotate(0deg); } 50% { transform: translateY(-28px) rotate(4deg); } }
+    @keyframes floatB { 0%,100% { transform: translateY(0) rotate(45deg); } 50% { transform: translateY(22px) rotate(45deg); } }
+    @keyframes floatC { 0%,100% { transform: translateY(0) rotate(-12deg); } 50% { transform: translateY(-18px) rotate(-12deg); } }
+    @keyframes beamSweep { 0% { opacity: 0; left: -30%; } 40% { opacity: 1; } 100% { opacity: 0; left: 120%; } }
+
+    /* Gradient text */
+    .grad {
+      background: linear-gradient(130deg, #e8e4f0 0%, #a78bfa 45%, #c4b5fd 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    /* Fade up */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+    .fu { animation: fadeUp .7s ease forwards; opacity: 0; }
+    .d1 { animation-delay: .08s; } .d2 { animation-delay: .22s; } .d3 { animation-delay: .38s; }
+    .d4 { animation-delay: .52s; } .d5 { animation-delay: .68s; }
+
+    /* Logo styling */
+    .logo-logi { opacity: 0.28; }
+    .logo-kube { opacity: 1; }
+    .diamond { display: inline-block; width: 8px; height: 8px; background: #a78bfa; transform: rotate(45deg); }
+    .diamond-sm { display: inline-block; width: 6px; height: 6px; background: #a78bfa; transform: rotate(45deg); }
+
+    /* Buttons */
+    .btn-p {
+      display: inline-flex; align-items: center; gap: 8px; background: #a78bfa; color: #0e0715;
+      font-family: 'Outfit', sans-serif; font-weight: 700; font-size: 14px; padding: 11px 22px;
+      border-radius: 8px; border: none; position: relative; overflow: hidden; text-decoration: none;
+      transition: transform 0.2s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s; letter-spacing: -0.2px;
+    }
+    .btn-p:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 32px rgba(167,139,250,0.55), 0 0 64px rgba(167,139,250,0.18);
+    }
+    .btn-p::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.22), transparent);
+      transform: translateX(-100%); transition: transform 0.55s;
+    }
+    .btn-p:hover::before { transform: translateX(100%); }
+    .btn-p:active { transform: translateY(0); }
+    .btn-p:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
+
+    .btn-g {
+      display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #e8e4f0;
+      font-family: 'Outfit', sans-serif; font-weight: 500; font-size: 14px; padding: 10px 22px;
+      border-radius: 8px; border: 1px solid rgba(167,139,250,0.2); text-decoration: none;
+      transition: border-color 0.25s, background 0.25s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .btn-g:hover {
+      border-color: rgba(167,139,250,0.55); background: rgba(167,139,250,0.06); transform: translateY(-3px);
+    }
+    .btn-g:active { transform: translateY(0); }
+    .btn-g:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
+
+    /* Nav */
+    .nav-link { transition: color 0.2s ease; }
+    .nav-link:hover { color: #a78bfa; }
+    .nav-link:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 4px; border-radius: 2px; }
+
+    /* Section label */
+    .section-label {
+      font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.25em;
+      text-transform: uppercase; color: rgba(167,139,250,0.5);
+    }
+
+    /* Stat counter */
+    .stat-n { font-size: 40px; font-weight: 800; color: #a78bfa; letter-spacing: -1.5px; line-height: 1; }
+
+    /* Logo scroll */
+    @keyframes logoRun { from { transform: translateX(0); } to { transform: translateX(-33.333%); } }
+    .logo-track { display: flex; gap: 72px; animation: logoRun 32s linear infinite; width: max-content; align-items: center; }
+    .logo-item { display: flex; align-items: center; gap: 10px; white-space: nowrap; flex-shrink: 0; opacity: 0.2; transition: opacity 0.3s; }
+    .logo-item:hover { opacity: 0.45; }
+    .logo-item svg { flex-shrink: 0; }
+    .logo-item span { font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 14px; color: #e8e4f0; letter-spacing: -0.2px; }
+
+    /* Service cards */
+    .svc-card {
+      position: relative; overflow: hidden; border-radius: 16px; aspect-ratio: 1/1; cursor: none;
+    }
+    .svc-card-bg {
+      position: absolute; inset: 0; background-size: cover; background-position: center;
+      transition: transform 0.5s cubic-bezier(0.16,1,0.3,1), filter 0.5s ease;
+      filter: brightness(0.3) saturate(0.6);
+    }
+    .svc-card:hover .svc-card-bg { transform: scale(1.06); filter: brightness(0.55) saturate(0.9); }
+    .svc-card-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(14,7,21,0.85) 0%, rgba(14,7,21,0.3) 50%, rgba(14,7,21,0.15) 100%);
+      transition: opacity 0.5s ease;
+    }
+    .svc-card:hover .svc-card-overlay { opacity: 0.6; }
+    .svc-card-content {
+      position: relative; z-index: 2; height: 100%; display: flex; flex-direction: column;
+      justify-content: flex-end; padding: 28px;
+    }
+    .svc-card-title {
+      font-family: 'Outfit', sans-serif; font-weight: 600; font-size: 24px;
+      letter-spacing: -0.02em; margin-bottom: 14px;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+    }
+    .svc-card:hover .svc-card-title { transform: translateY(-4px); }
+    .svc-card-tags {
+      display: flex; flex-wrap: wrap; gap: 8px;
+      transition: transform 0.4s cubic-bezier(0.16,1,0.3,1) 0.05s, opacity 0.4s ease 0.05s;
+    }
+    .svc-card:hover .svc-card-tags { transform: translateY(-4px); }
+    .svc-tag {
+      font-family: 'DM Mono', monospace; font-size: 11px; padding: 5px 12px; border-radius: 999px;
+      background: rgba(167,139,250,0.1); border: 1px solid rgba(167,139,250,0.15); color: #c4b5fd;
+      transition: background 0.3s ease, border-color 0.3s ease;
+    }
+    .svc-card:hover .svc-tag { background: rgba(167,139,250,0.18); border-color: rgba(167,139,250,0.3); }
+    .svc-card:focus-visible { outline: 2px solid #c4b5fd; outline-offset: 2px; }
+
+    /* Process */
+    .process-track {
+      position: absolute; left: 23px; top: 0; bottom: 0; width: 2px;
+      background: rgba(167,139,250,0.06); border-radius: 1px;
+    }
+    .process-track-fill {
+      position: absolute; left: 23px; top: 0; width: 2px; height: 0%;
+      background: linear-gradient(to bottom, #7c3aed, #a78bfa); border-radius: 1px;
+      transition: height 0.1s linear; box-shadow: 0 0 8px rgba(124,58,237,0.4);
+    }
+    .process-step {
+      opacity: 0; transform: translateY(40px);
+      transition: opacity 0.6s cubic-bezier(0.16,1,0.3,1), transform 0.6s cubic-bezier(0.16,1,0.3,1);
+    }
+    .process-step.is-visible { opacity: 1; transform: translateY(0); }
+    .process-badge {
+      transition: box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.34,1.56,0.64,1);
+    }
+    .process-step.is-visible .process-badge {
+      box-shadow: 0 0 20px rgba(124,58,237,0.35), 0 0 40px rgba(124,58,237,0.1); transform: scale(1.05);
+    }
+    .process-heading {
+      opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .process-heading.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* Scroll reveal */
+    .scroll-reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity 0.7s cubic-bezier(0.16,1,0.3,1), transform 0.7s cubic-bezier(0.16,1,0.3,1);
+    }
+    .scroll-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    /* CTA beam */
+    @keyframes bBeam { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+
+    @media (max-width: 768px) {
+      .stat-n { font-size: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+<canvas id="lk-canvas"></canvas>
+<div id="lk-cursor"></div>
+<div id="lk-ring"></div>
+
+<!-- NAV (old transparent style) -->
+<nav class="fixed top-0 left-0 right-0 z-[200]">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="#" class="font-outfit font-bold text-xl tracking-tight flex items-center gap-0.5" data-hover style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+      <span class="diamond-sm relative -top-2 ml-0.5"></span>
+    </a>
+    <div class="hidden md:flex items-center gap-1 border border-white/[0.15] rounded-full px-2 py-1.5 backdrop-blur-md bg-white/[0.03]">
+      <a href="#" class="nav-link font-space text-sm text-white px-5 py-2 rounded-full bg-white/10" data-hover>Home</a>
+      <a href="#services" class="nav-link font-space text-sm text-offwhite/60 px-5 py-2 rounded-full hover:bg-white/5" data-hover>Services</a>
+      <a href="#process" class="nav-link font-space text-sm text-offwhite/60 px-5 py-2 rounded-full hover:bg-white/5" data-hover>Process</a>
+      <a href="#contact" class="nav-link font-space text-sm text-offwhite/60 px-5 py-2 rounded-full hover:bg-white/5" data-hover>Contact</a>
+    </div>
+    <div class="hidden md:flex items-center gap-3">
+      <div class="flex items-center border border-white/[0.12] rounded-full overflow-hidden" style="padding:2px;">
+        <a href="index.html" class="font-dm text-xs px-3 py-1.5 rounded-full bg-white/10 text-white" style="letter-spacing:0.05em;" data-hover>EN</a>
+        <a href="index-de.html" class="font-dm text-xs px-3 py-1.5 rounded-full text-offwhite/50 hover:text-offwhite/80 transition-colors" style="letter-spacing:0.05em;" data-hover>DE</a>
+      </div>
+      <a href="#contact" class="btn-p px-5 py-2 rounded-lg text-sm" data-hover>Get in touch</a>
+    </div>
+    <button id="mobile-menu-btn" class="md:hidden text-offwhite/60 p-2" aria-label="Toggle menu" data-hover>
+      <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden md:hidden mx-6 mb-4 p-4 space-y-2 rounded-2xl border border-white/10 backdrop-blur-md bg-deep/80">
+    <a href="#" class="block font-space text-sm text-white py-2 px-4 rounded-lg bg-white/10">Home</a>
+    <a href="#services" class="block font-space text-sm text-offwhite/60 py-2 px-4 rounded-lg">Services</a>
+    <a href="#process" class="block font-space text-sm text-offwhite/60 py-2 px-4 rounded-lg">Process</a>
+    <div class="flex items-center gap-2 mt-2">
+      <div class="flex items-center border border-white/[0.12] rounded-full overflow-hidden" style="padding:2px;">
+        <a href="index.html" class="font-dm text-xs px-3 py-1.5 rounded-full bg-white/10 text-white" style="letter-spacing:0.05em;">EN</a>
+        <a href="index-de.html" class="font-dm text-xs px-3 py-1.5 rounded-full text-offwhite/50" style="letter-spacing:0.05em;">DE</a>
+      </div>
+    </div>
+    <a href="#contact" class="btn-p block text-center px-5 py-2.5 rounded-lg text-sm mt-2">Get in touch</a>
+  </div>
+</nav>
+
+<!-- HERO (new design) -->
+<section class="relative min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden" style="padding:120px 40px 80px" id="hero-section">
+  <div class="lk-grid"></div>
+
+  <!-- Interactive gradient blob -->
+  <div id="hero-blob" style="position:absolute;width:900px;height:900px;border-radius:50%;background:radial-gradient(circle,rgba(167,139,250,0.14) 0%,transparent 70%);left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none;filter:blur(50px);z-index:0;transition:left 1s ease,top 1s ease;"></div>
+  <!-- Secondary blob -->
+  <div style="position:absolute;width:700px;height:700px;border-radius:50%;background:radial-gradient(circle,rgba(124,58,237,0.1) 0%,transparent 70%);right:-15%;top:-10%;animation:blobA 14s ease-in-out infinite;pointer-events:none;filter:blur(70px);z-index:0;"></div>
+
+  <!-- Beam sweep -->
+  <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;z-index:0;">
+    <div style="position:absolute;width:55%;height:200%;top:-50%;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.04),transparent);transform:skewX(-18deg);animation:beamSweep 9s ease-in-out 1s infinite;"></div>
+  </div>
+
+  <!-- Parallax shapes -->
+  <div style="position:absolute;right:7%;top:18%;width:200px;height:200px;border:1px solid rgba(167,139,250,0.1);border-radius:28px;background:rgba(167,139,250,0.02);animation:floatA 16s ease-in-out infinite;pointer-events:none;z-index:0;">
+    <div style="position:absolute;inset:24px;border:1px solid rgba(167,139,250,0.06);border-radius:12px;"></div>
+  </div>
+  <div style="position:absolute;left:5%;bottom:28%;width:100px;height:100px;border:1px solid rgba(167,139,250,0.08);background:rgba(124,58,237,0.04);animation:floatB 11s ease-in-out infinite;pointer-events:none;z-index:0;"></div>
+  <div style="position:absolute;left:12%;top:22%;width:56px;height:56px;border-radius:50%;border:1px solid rgba(167,139,250,0.07);animation:floatC 13s ease-in-out infinite;pointer-events:none;z-index:0;"></div>
+
+  <!-- Hero content -->
+  <div style="position:relative;z-index:2;text-align:center;max-width:840px;">
+    <!-- Badge -->
+    <div class="fu d1" style="display:inline-flex;align-items:center;gap:8px;margin-bottom:32px;background:rgba(167,139,250,0.07);border:1px solid rgba(167,139,250,0.18);border-radius:100px;padding:5px 14px 5px 8px;">
+      <div style="width:6px;height:6px;border-radius:50%;background:#a78bfa;box-shadow:0 0 10px #a78bfa;"></div>
+      <span class="font-dm text-xs" style="color:#c4b5fd;letter-spacing:0.07em;">AI-native &middot; Production-ready &middot; End-to-end</span>
+    </div>
+
+    <h1 class="fu d2 font-outfit font-extrabold leading-none tracking-tighter mb-7" style="font-size:clamp(54px,8.5vw,102px);letter-spacing:-3.5px;">
+      Ship AI that<br><span class="grad">actually works.</span>
+    </h1>
+
+    <p class="fu d3 font-outfit font-light mb-11 mx-auto" style="font-size:18px;color:rgba(232,228,240,0.52);line-height:1.75;max-width:540px;letter-spacing:-0.2px;">
+      LogiKube builds intelligent systems for companies who need more than a chatbot &mdash;
+      strategy, architecture, and deployment, end to end.
+    </p>
+
+    <div class="fu d4 flex gap-3 justify-center flex-wrap">
+      <a href="#contact" class="btn-p" data-hover style="font-size:15px;padding:13px 28px;">Start a project &rarr;</a>
+      <a href="#services" class="btn-g" data-hover style="font-size:15px;padding:13px 28px;">See our work</a>
+    </div>
+
+    <!-- Scroll cue -->
+    <div class="fu d5" style="margin-top:72px;display:flex;flex-direction:column;align-items:center;gap:10px;">
+      <div style="width:1px;height:44px;background:linear-gradient(to bottom,transparent,rgba(167,139,250,0.35));"></div>
+      <span class="font-dm" style="font-size:10px;color:rgba(167,139,250,0.35);letter-spacing:0.22em;text-transform:uppercase;">scroll</span>
+    </div>
+  </div>
+</section>
+
+<!-- TOOL STACK STRIP -->
+<div style="border-top:1px solid rgba(167,139,250,0.07);border-bottom:1px solid rgba(167,139,250,0.07);padding:26px 0;overflow:hidden;position:relative;z-index:1;">
+  <div style="position:absolute;left:0;top:0;bottom:0;width:140px;background:linear-gradient(to right,#0e0715,transparent);z-index:2;"></div>
+  <div style="position:absolute;right:0;top:0;bottom:0;width:140px;background:linear-gradient(to left,#0e0715,transparent);z-index:2;"></div>
+  <div class="logo-track" id="logo-track"></div>
+</div>
+
+<template id="tool-logos">
+  <!-- Anthropic -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.827 3L24 21H18.748L8.574 3h5.253zM5.253 3l5.09 9.355L7.983 17H5.253L0 7.645V3h5.253z" fill="currentColor"/></svg>
+    <span>Anthropic</span>
+  </div>
+  <!-- OpenAI -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M22.282 9.821a5.985 5.985 0 00-.516-4.91 6.046 6.046 0 00-6.51-2.9A6.065 6.065 0 0011.708.421a6.043 6.043 0 00-5.77 4.224 6.042 6.042 0 00-4.038 2.928 6.044 6.044 0 00.75 7.09 5.98 5.98 0 00.516 4.911 6.04 6.04 0 006.51 2.9A6.065 6.065 0 0012.292 23.579a6.044 6.044 0 005.77-4.224 6.042 6.042 0 004.038-2.929 6.04 6.04 0 00-.75-7.09l-.068.485zM12.292 21.95a4.533 4.533 0 01-2.91-1.055l.145-.083 4.832-2.79a.784.784 0 00.395-.683v-6.81l2.042 1.178a.072.072 0 01.04.055v5.641a4.555 4.555 0 01-4.544 4.547zM3.498 17.905a4.528 4.528 0 01-.542-3.046l.145.087 4.832 2.79a.78.78 0 00.787 0l5.9-3.407v2.358a.073.073 0 01-.029.062l-4.887 2.822a4.555 4.555 0 01-6.206-1.666zM2.186 7.856A4.53 4.53 0 014.552 5.87l-.002.168v5.58a.78.78 0 00.393.68l5.9 3.407-2.042 1.179a.073.073 0 01-.069.006L3.845 14.09A4.555 4.555 0 012.186 7.856zm16.5 3.84l-5.9-3.408 2.042-1.178a.073.073 0 01.069-.006l4.887 2.822a4.547 4.547 0 01-.7 8.198v-5.748a.783.783 0 00-.398-.68zm2.032-3.058l-.145-.087-4.832-2.79a.78.78 0 00-.787 0l-5.9 3.407V6.81a.073.073 0 01.029-.062l4.887-2.82a4.547 4.547 0 016.748 4.71zM9.6 12.952l-2.043-1.18a.072.072 0 01-.04-.054V6.076a4.547 4.547 0 017.454-3.494l-.145.083-4.832 2.79a.784.784 0 00-.395.683l.001 6.814zm1.11-2.393l2.63-1.518 2.628 1.518v3.034l-2.628 1.518-2.63-1.518v-3.034z" fill="currentColor"/></svg>
+    <span>OpenAI</span>
+  </div>
+  <!-- Vercel -->
+  <div class="logo-item">
+    <svg width="20" height="18" viewBox="0 0 24 22" fill="none"><path d="M12 0L24 22H0L12 0z" fill="currentColor"/></svg>
+    <span>Vercel</span>
+  </div>
+  <!-- Stripe -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13.976 9.15c-2.172-.806-3.356-1.426-3.356-2.409 0-.831.683-1.305 1.901-1.305 2.227 0 4.515.858 6.09 1.631l.89-5.494C18.252.975 15.697 0 12.165 0 9.667 0 7.589.654 6.104 1.872 4.56 3.147 3.757 4.918 3.757 7.11c0 4.46 2.72 5.894 5.644 7.03 2.36.916 3.157 1.573 3.157 2.553 0 .948-.788 1.528-2.263 1.528-1.936 0-4.968-.947-6.846-2.155l-.889 5.548C4.548 22.78 7.257 24 10.776 24c2.6 0 4.716-.631 6.213-1.822 1.618-1.28 2.432-3.166 2.432-5.548 0-4.553-2.775-5.985-5.445-7.08z" fill="currentColor"/></svg>
+    <span>Stripe</span>
+  </div>
+  <!-- Notion -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.459 4.208c.746.606 1.026.56 2.428.466l13.215-.793c.28 0 .047-.28-.046-.326L17.86 1.97c-.42-.326-.98-.7-2.055-.607L2.843 2.47c-.467.047-.56.28-.373.466l1.99 1.272zm.793 2.756v13.858c0 .746.373 1.026 1.213.98l14.523-.84c.84-.046.933-.56.933-1.166V5.917c0-.607-.233-.933-.747-.887l-15.176.887c-.56.047-.746.327-.746.887zm14.337.42c.093.42 0 .84-.42.887l-.7.14v10.264c-.607.327-1.166.514-1.633.514-.747 0-.933-.234-1.493-.933l-4.571-7.182v6.95l1.446.327s0 .84-1.166.84l-3.218.186c-.093-.186 0-.653.327-.726l.84-.233V9.854L7.822 9.76c-.094-.42.14-1.026.793-1.073l3.453-.233 4.757 7.275V9.387l-1.213-.14c-.094-.513.28-.886.746-.933l3.453-.233 3.221.303zM1.613 1.37L15.15.243c1.633-.14 2.053-.047 3.079.7l4.244 2.986c.7.513.933.653.933 1.213v16.378c0 1.026-.373 1.633-1.679 1.726L5.252 24c-.966.047-1.446-.093-1.96-.747L.652 19.886c-.56-.747-.793-1.306-.793-1.96V2.91c0-.84.373-1.493 1.754-1.54z" fill="currentColor"/></svg>
+    <span>Notion</span>
+  </div>
+  <!-- Figma -->
+  <div class="logo-item">
+    <svg width="16" height="20" viewBox="0 0 16 24" fill="none"><path d="M4 24c2.21 0 4-1.79 4-4v-4H4c-2.21 0-4 1.79-4 4s1.79 4 4 4z" fill="currentColor"/><path d="M0 12c0-2.21 1.79-4 4-4h4v8H4c-2.21 0-4-1.79-4-4z" fill="currentColor" opacity=".8"/><path d="M0 4c0-2.21 1.79-4 4-4h4v8H4C1.79 8 0 6.21 0 4z" fill="currentColor" opacity=".6"/><path d="M8 0h4c2.21 0 4 1.79 4 4s-1.79 4-4 4H8V0z" fill="currentColor" opacity=".8"/><path d="M16 12c0 2.21-1.79 4-4 4s-4-1.79-4-4 1.79-4 4-4 4 1.79 4 4z" fill="currentColor"/></svg>
+    <span>Figma</span>
+  </div>
+  <!-- Loom -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M23.64 11.08h-6.32l5.48-3.16-1-1.72-5.48 3.16 3.16-5.48-1.72-1-3.16 5.48V2h-2v6.36L9.44 2.88l-1.72 1 3.16 5.48-5.48-3.16-1 1.72 5.48 3.16H3.56v2h6.32l-5.48 3.16 1 1.72 5.48-3.16-3.16 5.48 1.72 1 3.16-5.48v6.32h2v-6.32l3.16 5.48 1.72-1-3.16-5.48 5.48 3.16 1-1.72-5.48-3.16h6.32v-2zM12.6 14.64a2.64 2.64 0 110-5.28 2.64 2.64 0 010 5.28z" fill="currentColor"/></svg>
+    <span>Loom</span>
+  </div>
+  <!-- Make -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><circle cx="7" cy="12" r="5" stroke="currentColor" stroke-width="1.8" fill="none"/><circle cx="17" cy="12" r="5" stroke="currentColor" stroke-width="1.8" fill="none"/><path d="M12 8.27a5 5 0 010 7.46" stroke="currentColor" stroke-width="1.2" fill="none"/></svg>
+    <span>Make</span>
+  </div>
+  <!-- n8n -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="1" y="8" width="6" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="9" y="5" width="6" height="14" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><rect x="17" y="8" width="6" height="8" rx="1.5" stroke="currentColor" stroke-width="1.6" fill="none"/><line x1="7" y1="12" x2="9" y2="10" stroke="currentColor" stroke-width="1.4"/><line x1="15" y1="10" x2="17" y2="12" stroke="currentColor" stroke-width="1.4"/></svg>
+    <span>n8n</span>
+  </div>
+  <!-- Apify -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2L3 7v10l9 5 9-5V7l-9-5z" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 2v20M3 7l9 5 9-5" stroke="currentColor" stroke-width="1.4" fill="none"/></svg>
+    <span>Apify</span>
+  </div>
+  <!-- Apollo -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2z" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M12 6l-4 12h2.5l1-3h5l1 3H20L16 6h-4zm2 1.5L15.8 13h-3.6L14 7.5z" fill="currentColor"/></svg>
+    <span>Apollo</span>
+  </div>
+  <!-- Ghostbuster -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.134 2 5 5.134 5 9v7c0 1.5.5 2.5 1 3l1-2 1.5 2.5L10 18l1.5 2.5L12 22l.5-1.5L14 23l1.5-2.5L17 23l1-2.5.5 1c.5-.5 .5-1.5.5-2.5V9c0-3.866-3.134-7-7-7z" stroke="currentColor" stroke-width="1.5" fill="none"/><circle cx="9.5" cy="10" r="1.5" fill="currentColor"/><circle cx="14.5" cy="10" r="1.5" fill="currentColor"/></svg>
+    <span>Ghostbuster</span>
+  </div>
+  <!-- monday.com -->
+  <div class="logo-item">
+    <svg width="22" height="20" viewBox="0 0 26 20" fill="none"><ellipse cx="5" cy="14" rx="3.5" ry="5" fill="currentColor" opacity=".5"/><ellipse cx="13" cy="10" rx="3.5" ry="9" fill="currentColor" opacity=".7"/><ellipse cx="21" cy="14" rx="3.5" ry="5" fill="currentColor" opacity=".9"/></svg>
+    <span>monday.com</span>
+  </div>
+  <!-- ClickUp -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4 16l8-6 8 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none"/><path d="M4 11l8-6 8 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" opacity=".4"/></svg>
+    <span>ClickUp</span>
+  </div>
+  <!-- Modal Labs -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><rect x="3" y="3" width="18" height="18" rx="4" stroke="currentColor" stroke-width="1.6" fill="none"/><path d="M7 17V10l5 7 5-7v7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    <span>Modal</span>
+  </div>
+  <!-- Trigger.dev -->
+  <div class="logo-item">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>
+    <span>Trigger.dev</span>
+  </div>
+</template>
+
+<!-- VALUE PROPOSITION (new) -->
+<section class="relative overflow-hidden" style="padding:130px 0 100px;">
+  <div class="max-w-[1100px] mx-auto px-10">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+      <div class="scroll-reveal">
+        <div class="section-label mb-5">The promise</div>
+        <h2 class="font-outfit font-bold tracking-tighter leading-none mb-6" style="font-size:clamp(34px,4.5vw,58px);letter-spacing:-2px;">
+          Your AI strategy, from whiteboard to production.
+        </h2>
+        <p class="font-outfit font-light mb-10" style="font-size:16px;color:rgba(232,228,240,0.48);line-height:1.8;">
+          Most AI projects stall in prototype hell. We close the gap between impressive demo and real business value &mdash; faster than your internal team can onboard a contractor.
+        </p>
+        <a href="#contact" class="btn-p" data-hover>Schedule a call &rarr;</a>
+      </div>
+      <div class="scroll-reveal" style="transition-delay:0.15s;">
+        <div class="flex items-center gap-7 py-7" style="border-bottom:1px solid rgba(167,139,250,0.08);">
+          <div class="stat-n">12x</div>
+          <div class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.42);line-height:1.5;">Faster to production vs. in-house build</div>
+        </div>
+        <div class="flex items-center gap-7 py-7" style="border-bottom:1px solid rgba(167,139,250,0.08);">
+          <div class="stat-n">40+</div>
+          <div class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.42);line-height:1.5;">AI systems shipped across industries</div>
+        </div>
+        <div class="flex items-center gap-7 py-7">
+          <div class="stat-n">98%</div>
+          <div class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.42);line-height:1.5;">Client retention and re-engagement rate</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES (old version) -->
+<section id="services" class="relative py-24 md:py-32">
+  <div class="lk-grid" style="opacity:0.4;"></div>
+  <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+    <div class="mb-14 scroll-reveal">
+      <div class="section-label flex items-center gap-2 mb-4">
+        <span class="diamond-sm"></span> Our services
+      </div>
+      <h2 class="font-outfit font-bold text-3xl md:text-5xl tracking-tighter" style="letter-spacing:-2px;">
+        What we specialize in.
+      </h2>
+      <p class="font-outfit font-light text-sm mt-4 max-w-2xl" style="color:rgba(232,228,240,0.42);line-height:1.7;">
+        End-to-end AI systems that automate operations, engage customers, and scale your business &mdash; built and managed by a team that's done it across dozens of industries.
+      </p>
+    </div>
+
+    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-3">
+      <div class="svc-card scroll-reveal" tabindex="0">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1518432031352-d6fc5c10da5a?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">Workflow Automation</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">Task Pipelines</span>
+            <span class="svc-tag">Data Entry AI</span>
+            <span class="svc-tag">Admin Bots</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card scroll-reveal" tabindex="0" style="transition-delay:0.08s;">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1676299081847-824916de030a?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">AI Chatbots</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">Customer Support</span>
+            <span class="svc-tag">Lead Qualification</span>
+            <span class="svc-tag">Knowledge Base</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card scroll-reveal" tabindex="0" style="transition-delay:0.16s;">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1590650153855-d9e808231d41?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">Voice Agents</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">Inbound Calls</span>
+            <span class="svc-tag">Appointment Booking</span>
+            <span class="svc-tag">IVR Replacement</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card scroll-reveal" tabindex="0" style="transition-delay:0.24s;">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">Custom AI Systems</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">Bespoke Models</span>
+            <span class="svc-tag">API Integrations</span>
+            <span class="svc-tag">Data Pipelines</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card scroll-reveal" tabindex="0" style="transition-delay:0.32s;">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">Process Optimization</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">Operations Audit</span>
+            <span class="svc-tag">Cost Reduction</span>
+            <span class="svc-tag">Error Elimination</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="svc-card scroll-reveal" tabindex="0" style="transition-delay:0.40s;">
+        <div class="svc-card-bg" style="background-image:url('https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80')"></div>
+        <div class="svc-card-overlay"></div>
+        <div class="svc-card-content">
+          <h3 class="svc-card-title">AI Strategy &<br>Consulting</h3>
+          <div class="svc-card-tags">
+            <span class="svc-tag">AI Roadmapping</span>
+            <span class="svc-tag">Team Workshops</span>
+            <span class="svc-tag">Tool Selection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK (old version) -->
+<section id="process" class="relative py-24 md:py-32 overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
+
+      <div class="md:sticky md:top-40">
+        <div class="process-heading" data-scroll-reveal>
+          <div class="section-label flex items-center gap-2 mb-4">
+            <span class="diamond-sm"></span> How we work
+          </div>
+          <h2 class="font-outfit font-bold text-3xl md:text-5xl tracking-tighter mb-6" style="letter-spacing:-2px;">
+            From idea to<br>deployed system<br>in weeks
+          </h2>
+          <p class="font-outfit font-light text-sm hidden md:block" style="color:rgba(232,228,240,0.42);line-height:1.7;">
+            A proven four-step process that takes you from first conversation to live AI &mdash; with full transparency at every stage.
+          </p>
+        </div>
+      </div>
+
+      <div class="relative" id="process-steps">
+        <div class="process-track"></div>
+        <div class="process-track-fill" id="process-track-fill"></div>
+
+        <div class="space-y-20 md:space-y-28 relative">
+          <div class="process-step relative flex gap-6 pl-2" data-scroll-reveal>
+            <div class="flex-shrink-0 relative z-10">
+              <div class="process-badge w-12 h-12 rounded-xl bg-gradient-to-br from-violet-dark to-violet flex items-center justify-center font-outfit font-bold text-white text-sm">01</div>
+            </div>
+            <div>
+              <h3 class="font-outfit font-semibold text-xl md:text-2xl mb-3">Discovery call</h3>
+              <p class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.45);line-height:1.7;">We learn your business, map your pain points, and identify where AI creates the most value. No jargon, no fluff &mdash; just a clear understanding of what you need.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Pain point mapping</span>
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Opportunity audit</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step relative flex gap-6 pl-2" data-scroll-reveal>
+            <div class="flex-shrink-0 relative z-10">
+              <div class="process-badge w-12 h-12 rounded-xl bg-gradient-to-br from-violet-dark to-violet flex items-center justify-center font-outfit font-bold text-white text-sm">02</div>
+            </div>
+            <div>
+              <h3 class="font-outfit font-semibold text-xl md:text-2xl mb-3">Solution design</h3>
+              <p class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.45);line-height:1.7;">We architect the AI system, define integration points, and present a transparent plan &mdash; so you know exactly what's being built, why, and how long it takes.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">System architecture</span>
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Integration plan</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step relative flex gap-6 pl-2" data-scroll-reveal>
+            <div class="flex-shrink-0 relative z-10">
+              <div class="process-badge w-12 h-12 rounded-xl bg-gradient-to-br from-violet-dark to-violet flex items-center justify-center font-outfit font-bold text-white text-sm">03</div>
+            </div>
+            <div>
+              <h3 class="font-outfit font-semibold text-xl md:text-2xl mb-3">Build & iterate</h3>
+              <p class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.45);line-height:1.7;">We develop, test, and refine in short cycles. You see progress weekly and provide feedback so the final system fits your workflow perfectly.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Weekly demos</span>
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Rapid iteration</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="process-step relative flex gap-6 pl-2" data-scroll-reveal>
+            <div class="flex-shrink-0 relative z-10">
+              <div class="process-badge w-12 h-12 rounded-xl bg-gradient-to-br from-violet-dark to-violet flex items-center justify-center font-outfit font-bold text-white text-sm">04</div>
+            </div>
+            <div>
+              <h3 class="font-outfit font-semibold text-xl md:text-2xl mb-3">Deploy & support</h3>
+              <p class="font-outfit font-light text-sm" style="color:rgba(232,228,240,0.45);line-height:1.7;">We launch the system into your live environment, train your team, and provide ongoing support to ensure everything runs smoothly.</p>
+              <div class="mt-4 flex flex-wrap gap-2">
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Go-live</span>
+                <span class="font-dm text-xs px-3 py-1 rounded-full border border-violet/10" style="color:rgba(232,228,240,0.3);">Ongoing support</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA (new design) -->
+<section id="contact" class="relative overflow-hidden" style="padding:150px 0 120px;text-align:center;">
+  <!-- Ambient glow -->
+  <div id="cta-glow" style="position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:700px;height:500px;border-radius:50%;background:radial-gradient(ellipse,rgba(167,139,250,0.10) 0%,transparent 70%);filter:blur(30px);transition:background 0.5s;pointer-events:none;"></div>
+
+  <!-- Parallax shapes -->
+  <div style="position:absolute;right:9%;top:12%;width:170px;height:170px;border-radius:50%;border:1px solid rgba(167,139,250,0.07);animation:floatA 18s ease-in-out infinite;pointer-events:none;">
+    <div style="position:absolute;inset:24px;border-radius:50%;border:1px solid rgba(167,139,250,0.04);"></div>
+  </div>
+  <div style="position:absolute;left:8%;bottom:16%;width:80px;height:80px;border:1px solid rgba(167,139,250,0.06);animation:floatB 12s ease-in-out infinite;pointer-events:none;"></div>
+
+  <div style="position:relative;z-index:1;" class="scroll-reveal">
+    <div class="section-label mb-6">Ready to build?</div>
+    <h2 class="font-outfit font-extrabold tracking-tighter leading-none mb-6" style="font-size:clamp(44px,8vw,96px);letter-spacing:-3.5px;">
+      Let's build your<br><span class="grad">AI edge.</span>
+    </h2>
+    <p class="font-outfit font-light mx-auto mb-12" style="font-size:17px;color:rgba(232,228,240,0.42);max-width:420px;line-height:1.75;">
+      Start with a free, 30-minute discovery call.
+    </p>
+
+    <!-- CTA box with shimmer -->
+    <div id="cta-box" style="display:inline-flex;flex-direction:column;align-items:center;padding:44px 60px;border-radius:20px;position:relative;background:rgba(167,139,250,0.04);border:1px solid rgba(167,139,250,0.12);transition:border-color 0.3s,box-shadow 0.3s;">
+      <!-- Shimmer border -->
+      <div id="cta-shimmer" style="position:absolute;inset:-1px;border-radius:21px;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 0.4s;">
+        <div id="cta-beam" style="position:absolute;width:60%;height:100%;top:0;left:0;background:linear-gradient(90deg,transparent,rgba(167,139,250,0.4),transparent);filter:blur(2px);"></div>
+      </div>
+
+      <p class="font-outfit font-light" style="font-size:15px;color:rgba(232,228,240,0.48);line-height:1.7;max-width:400px;text-align:center;margin-bottom:24px;">
+        We'll audit your process, find the bottlenecks, and show you exactly where AI moves the needle.
+      </p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;">
+        <a href="mailto:chuyo.zhou@logikube.com" class="btn-p" data-hover style="font-size:16px;padding:14px 32px;border-radius:10px;">
+          Book a discovery call &rarr;
+        </a>
+      </div>
+      <p class="font-dm" style="font-size:11px;color:rgba(232,228,240,0.2);letter-spacing:0.1em;margin-top:20px;">
+        No commitment &middot; No pitch deck &middot; Just clarity.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (old logo style, new layout) -->
+<footer style="border-top:1px solid rgba(167,139,250,0.07);padding:36px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="flex items-center gap-0.5" style="flex:1;min-width:120px;">
+    <span class="font-outfit font-bold text-lg tracking-tight" style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+    </span>
+    <span class="diamond-sm relative -top-1.5 ml-0.5"></span>
+  </div>
+  <div style="display:flex;gap:24px;justify-content:center;">
+    <a href="privacy-policy.html" class="font-dm text-xs" data-hover style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Privacy Policy</a>
+    <a href="terms-of-service.html" class="font-dm text-xs" data-hover style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Terms of Service</a>
+  </div>
+  <div class="font-dm text-xs" style="color:rgba(232,228,240,0.18);letter-spacing:0.1em;flex:1;min-width:120px;text-align:right;">
+    &copy; 2026 LogiKube &middot; Intelligence, engineered.
+  </div>
+</footer>
+
+<script>
+(function(){
+  // Populate logo track from template (duplicate 3x for seamless infinite scroll)
+  const logoTemplate = document.getElementById('tool-logos');
+  const logoTrack = document.getElementById('logo-track');
+  if(logoTemplate && logoTrack){
+    const items = logoTemplate.content.cloneNode(true);
+    const fragment = document.createDocumentFragment();
+    for(let i = 0; i < 3; i++){
+      const clone = items.cloneNode(true);
+      fragment.appendChild(clone);
+    }
+    logoTrack.appendChild(fragment);
+  }
+
+  // Particles
+  const canvas = document.getElementById('lk-canvas');
+  const ctx = canvas.getContext('2d');
+  let W, H, pts = [];
+  function resize(){ W = canvas.width = window.innerWidth; H = canvas.height = window.innerHeight; }
+  resize(); window.addEventListener('resize', resize);
+  for(let i=0; i<90; i++) pts.push({x:Math.random()*5000,y:Math.random()*3000,vx:(Math.random()-.5)*.25,vy:(Math.random()-.5)*.25,r:Math.random()*1.4+.4,a:Math.random()*.45+.08});
+  let sy = 0; window.addEventListener('scroll',()=>sy=window.scrollY,{passive:true});
+  function tick(){
+    ctx.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.x+=p.vx; p.y+=p.vy;
+      if(p.x<0)p.x=W; if(p.x>W)p.x=0;
+      if(p.y<0)p.y=H; if(p.y>H)p.y=0;
+      ctx.beginPath(); ctx.arc(p.x%W, (p.y + sy*.08)%H, p.r, 0, Math.PI*2);
+      ctx.fillStyle=`rgba(167,139,250,${p.a})`; ctx.fill();
+    });
+    requestAnimationFrame(tick);
+  }
+  tick();
+
+  // Custom cursor
+  const cur = document.getElementById('lk-cursor');
+  const ring = document.getElementById('lk-ring');
+  let mx=0,my=0,rx=0,ry=0;
+  document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+  (function animRing(){rx+=(mx-rx)*.13;ry+=(my-ry)*.13;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(animRing);})();
+  document.addEventListener('mouseover',e=>{
+    const t=e.target;
+    const isIx=t.closest('button,a,[data-hover]');
+    ring.style.width=isIx?'56px':'36px'; ring.style.height=isIx?'56px':'36px';
+    ring.style.borderColor=isIx?'rgba(167,139,250,.75)':'rgba(167,139,250,.45)';
+  });
+
+  // Hero blob follows mouse
+  const heroSection = document.getElementById('hero-section');
+  const heroBlob = document.getElementById('hero-blob');
+  if(heroSection && heroBlob){
+    heroSection.addEventListener('mousemove', e=>{
+      const r = heroSection.getBoundingClientRect();
+      const px = ((e.clientX - r.left) / r.width) * 100;
+      const py = ((e.clientY - r.top) / r.height) * 100;
+      heroBlob.style.left = (px - 45) + '%';
+      heroBlob.style.top = (py - 45) + '%';
+    });
+  }
+
+  // Mobile menu
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+
+  // Scroll reveal
+  const revealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+      }
+    });
+  }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+
+  document.querySelectorAll('[data-scroll-reveal], .scroll-reveal, .process-heading').forEach(el => revealObserver.observe(el));
+
+  // Process track fill
+  const stepsContainer = document.getElementById('process-steps');
+  const trackFill = document.getElementById('process-track-fill');
+  if (stepsContainer && trackFill) {
+    window.addEventListener('scroll', () => {
+      const rect = stepsContainer.getBoundingClientRect();
+      const containerTop = rect.top;
+      const containerHeight = rect.height;
+      const viewportCenter = window.innerHeight * 0.55;
+      const scrolled = viewportCenter - containerTop;
+      const progress = Math.max(0, Math.min(1, scrolled / containerHeight));
+      trackFill.style.height = (progress * 100) + '%';
+    }, { passive: true });
+  }
+
+  // CTA box hover with beam
+  const ctaBox = document.getElementById('cta-box');
+  const ctaShimmer = document.getElementById('cta-shimmer');
+  const ctaGlow = document.getElementById('cta-glow');
+  const ctaBeam = document.getElementById('cta-beam');
+  let beamPos = 0;
+  if(ctaBox){
+    ctaBox.addEventListener('mouseenter', ()=>{
+      ctaBox.style.borderColor = 'rgba(167,139,250,0.3)';
+      ctaBox.style.boxShadow = '0 0 60px rgba(167,139,250,0.12)';
+      ctaShimmer.style.opacity = '0.6';
+      ctaGlow.style.background = 'radial-gradient(ellipse,rgba(167,139,250,0.16) 0%,transparent 70%)';
+    });
+    ctaBox.addEventListener('mouseleave', ()=>{
+      ctaBox.style.borderColor = 'rgba(167,139,250,0.12)';
+      ctaBox.style.boxShadow = 'none';
+      ctaShimmer.style.opacity = '0';
+      ctaGlow.style.background = 'radial-gradient(ellipse,rgba(167,139,250,0.10) 0%,transparent 70%)';
+    });
+  }
+  (function animBeam(){
+    beamPos = (beamPos + 0.4) % 360;
+    if(ctaBeam) ctaBeam.style.left = (beamPos / 3.6 - 30) + '%';
+    requestAnimationFrame(animBeam);
+  })();
+})();
+</script>
+
+</body>
+</html>

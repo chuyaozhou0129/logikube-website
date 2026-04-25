@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impressum — LogiKube</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: { DEFAULT: '#a78bfa', dark: '#7c3aed', light: '#c4b5fd' },
+            deep: '#0e0715',
+            fg: '#e8e4f0',
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            dm: ['"DM Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0e0715; color: #e8e4f0; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0e0715; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.25); border-radius: 2px; }
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+    .logo-logi { opacity: 0.28; }
+    .logo-kube { opacity: 1; }
+    .diamond-sm { display: inline-block; width: 6px; height: 6px; background: #a78bfa; transform: rotate(45deg); }
+    .legal-body h2 { font-size: 20px; font-weight: 600; color: #e8e4f0; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .legal-body h3 { font-size: 16px; font-weight: 600; color: rgba(232,228,240,0.8); margin-top: 32px; margin-bottom: 12px; }
+    .legal-body p { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; margin-bottom: 16px; }
+    .legal-body a { color: #a78bfa; text-decoration: none; transition: color 0.2s; }
+    .legal-body a:hover { color: #c4b5fd; }
+    .legal-body ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+    .legal-body ul li { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; padding-left: 20px; position: relative; }
+    .legal-body ul li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; background: rgba(167,139,250,0.4); transform: rotate(45deg); }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-[200]">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="font-outfit font-bold text-xl tracking-tight flex items-center gap-0.5" style="letter-spacing:-0.03em; text-decoration:none; color:#e8e4f0;">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+      <span class="diamond-sm relative -top-2 ml-0.5"></span>
+    </a>
+    <a href="index.html" class="font-outfit text-sm font-medium" style="color:rgba(232,228,240,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.45)'">&larr; Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="max-w-3xl mx-auto px-6 pt-36 pb-24">
+  <div style="margin-bottom:12px;">
+    <span class="font-dm" style="font-size:11px;color:rgba(167,139,250,0.5);letter-spacing:0.25em;text-transform:uppercase;">Rechtliches</span>
+  </div>
+  <h1 class="font-outfit font-bold tracking-tighter mb-16" style="font-size:clamp(36px,6vw,56px);letter-spacing:-2px;line-height:1.05;">Impressum</h1>
+
+  <div class="legal-body">
+    <h2>Angaben gemäß § 5 TMG</h2>
+    <p>
+      Chuyao Zhou<br>
+      Proskauer Straße 21<br>
+      10247 Berlin<br>
+      Deutschland
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+
+    <h2>Umsatzsteuer-ID</h2>
+    <p>
+      Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:<br>
+      DE365395231
+    </p>
+
+    <h2>Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV</h2>
+    <p>
+      Chuyao Zhou<br>
+      Proskauer Straße 21<br>
+      10247 Berlin
+    </p>
+
+    <h2>EU-Streitschlichtung</h2>
+    <p>
+      Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+      <a href="https://ec.europa.eu/consumers/odr/" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr/</a>.<br>
+      Unsere E-Mail-Adresse finden Sie oben im Impressum.
+    </p>
+
+    <h2>Verbraucherstreitbeilegung / Universalschlichtungsstelle</h2>
+    <p>
+      Wir sind nicht bereit oder verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.
+    </p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(167,139,250,0.07);padding:36px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="flex items-center gap-0.5" style="flex:1;min-width:120px;">
+    <span class="font-outfit font-bold text-lg tracking-tight" style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+    </span>
+    <span class="diamond-sm relative -top-1.5 ml-0.5"></span>
+  </div>
+  <div style="display:flex;gap:24px;justify-content:center;">
+    <a href="impressum.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Impressum</a>
+    <a href="datenschutz.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Datenschutz</a>
+  </div>
+  <div class="font-dm text-xs" style="color:rgba(232,228,240,0.18);letter-spacing:0.1em;flex:1;min-width:120px;text-align:right;">
+    &copy; 2026 LogiKube &middot; Intelligence, engineered.
+  </div>
+</footer>
+
+</body>
+</html>

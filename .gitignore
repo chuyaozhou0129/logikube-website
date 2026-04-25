@@ -1,0 +1,10 @@
+node_modules/
+temporary screenshots/
+package.json
+package-lock.json
+screenshot.mjs
+serve.mjs
+skills-lock.json
+CLAUDE.md
+.claude/
+.agents/

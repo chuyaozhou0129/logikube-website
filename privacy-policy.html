@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy — LogiKube</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: { DEFAULT: '#a78bfa', dark: '#7c3aed', light: '#c4b5fd' },
+            deep: '#0e0715',
+            fg: '#e8e4f0',
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            dm: ['"DM Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0e0715; color: #e8e4f0; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0e0715; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.25); border-radius: 2px; }
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+    .logo-logi { opacity: 0.28; }
+    .logo-kube { opacity: 1; }
+    .diamond-sm { display: inline-block; width: 6px; height: 6px; background: #a78bfa; transform: rotate(45deg); }
+    .legal-body h2 { font-size: 20px; font-weight: 600; color: #e8e4f0; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .legal-body h3 { font-size: 16px; font-weight: 600; color: rgba(232,228,240,0.8); margin-top: 32px; margin-bottom: 12px; }
+    .legal-body p { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; margin-bottom: 16px; }
+    .legal-body a { color: #a78bfa; text-decoration: none; transition: color 0.2s; }
+    .legal-body a:hover { color: #c4b5fd; }
+    .legal-body ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+    .legal-body ul li { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; padding-left: 20px; position: relative; }
+    .legal-body ul li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; background: rgba(167,139,250,0.4); transform: rotate(45deg); }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-[200]">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="font-outfit font-bold text-xl tracking-tight flex items-center gap-0.5" style="letter-spacing:-0.03em; text-decoration:none; color:#e8e4f0;">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+      <span class="diamond-sm relative -top-2 ml-0.5"></span>
+    </a>
+    <a href="index.html" class="font-outfit text-sm font-medium" style="color:rgba(232,228,240,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.45)'">&larr; Back to home</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="max-w-3xl mx-auto px-6 pt-36 pb-24">
+  <div style="margin-bottom:12px;">
+    <span class="font-dm" style="font-size:11px;color:rgba(167,139,250,0.5);letter-spacing:0.25em;text-transform:uppercase;">Legal</span>
+  </div>
+  <h1 class="font-outfit font-bold tracking-tighter mb-16" style="font-size:clamp(36px,6vw,56px);letter-spacing:-2px;line-height:1.05;">Privacy Policy</h1>
+
+  <div class="legal-body">
+
+    <h2>1. Privacy at a Glance</h2>
+
+    <h3>General Information</h3>
+    <p>
+      The following information provides a simple overview of what happens to your personal data when you visit this website. Personal data is any data that can be used to personally identify you. For detailed information on data protection, please refer to our privacy policy below.
+    </p>
+
+    <h3>Data Collection on This Website</h3>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Who is responsible for data collection on this website?</strong><br>
+      Data processing on this website is carried out by the website operator. You can find the operator's contact details in the "Information About the Responsible Party" section of this privacy policy.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">How do we collect your data?</strong><br>
+      Your data is collected in part by you providing it to us. This may include data you enter in a contact form or send via email. Other data is automatically collected or collected with your consent by our IT systems when you visit the website. This is primarily technical data (e.g., internet browser, operating system, or time of page access). This data is collected automatically as soon as you enter this website.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">What do we use your data for?</strong><br>
+      Some data is collected to ensure the error-free provision of the website. Other data may be used to analyze your user behavior.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">What rights do you have regarding your data?</strong><br>
+      You have the right at any time to obtain free information about the origin, recipient, and purpose of your stored personal data. You also have the right to request the correction or deletion of this data. If you have given consent to data processing, you can revoke this consent at any time for the future. You also have the right, under certain circumstances, to request the restriction of the processing of your personal data. Furthermore, you have the right to lodge a complaint with the competent supervisory authority.
+    </p>
+    <p>
+      You can contact us at any time regarding this and other questions on the subject of data protection.
+    </p>
+
+    <h2>2. Hosting</h2>
+    <p>
+      We host the contents of our website with the following provider:
+    </p>
+
+    <h3>Hostinger</h3>
+    <p>
+      The provider is Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Cyprus (hereinafter "Hostinger").
+    </p>
+    <p>
+      When you visit our website, Hostinger collects various log files including your IP addresses. For details, please refer to Hostinger's privacy policy: <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">https://www.hostinger.com/privacy-policy</a>.
+    </p>
+    <p>
+      The use of Hostinger is based on Art. 6(1)(f) GDPR. We have a legitimate interest in ensuring the most reliable presentation of our website. If consent has been requested, processing is carried out exclusively on the basis of Art. 6(1)(a) GDPR. Consent can be revoked at any time.
+    </p>
+
+    <h3>Data Processing Agreement</h3>
+    <p>
+      We have concluded a data processing agreement (DPA) for the use of the above-mentioned service. This is a contract required by data protection law that ensures the provider processes the personal data of our website visitors only in accordance with our instructions and in compliance with the GDPR.
+    </p>
+
+    <h2>3. General Information and Mandatory Disclosures</h2>
+
+    <h3>Data Protection</h3>
+    <p>
+      The operators of these pages take the protection of your personal data very seriously. We treat your personal data confidentially and in accordance with statutory data protection regulations and this privacy policy.
+    </p>
+    <p>
+      When you use this website, various personal data is collected. Personal data is data that can be used to personally identify you. This privacy policy explains what data we collect and what we use it for. It also explains how and for what purpose this is done.
+    </p>
+    <p>
+      We would like to point out that data transmission over the Internet (e.g., when communicating by email) may have security vulnerabilities. Complete protection of data against access by third parties is not possible.
+    </p>
+
+    <h3>Information About the Responsible Party</h3>
+    <p>
+      The responsible party for data processing on this website is:
+    </p>
+    <p>
+      Chuyao Zhou<br>
+      Proskauer Stra&szlig;e 21<br>
+      10247 Berlin<br>
+      Germany
+    </p>
+    <p>
+      Email: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+    <p>
+      The responsible party is the natural or legal person who alone or jointly with others determines the purposes and means of the processing of personal data (e.g., names, email addresses, etc.).
+    </p>
+
+    <h3>Storage Duration</h3>
+    <p>
+      Unless a more specific storage period has been stated within this privacy policy, your personal data will remain with us until the purpose for data processing no longer applies. If you assert a legitimate request for deletion or revoke your consent to data processing, your data will be deleted unless we have other legally permissible reasons for storing your personal data; in the latter case, deletion will occur after these reasons cease to apply.
+    </p>
+
+    <h3>Legal Basis for Data Processing</h3>
+    <p>
+      If you have consented to data processing, we process your personal data on the basis of Art. 6(1)(a) GDPR or Art. 9(2)(a) GDPR if special categories of data are processed pursuant to Art. 9(1) GDPR. In the case of explicit consent to the transfer of personal data to third countries, data processing is also carried out on the basis of Art. 49(1)(a) GDPR. If data processing is necessary for the performance of a contract or for pre-contractual measures, we process your data on the basis of Art. 6(1)(b) GDPR. Furthermore, we process your data if it is necessary to fulfill a legal obligation on the basis of Art. 6(1)(c) GDPR. Data processing may also be carried out on the basis of our legitimate interest pursuant to Art. 6(1)(f) GDPR.
+    </p>
+
+    <h3>Revocation of Your Consent to Data Processing</h3>
+    <p>
+      Many data processing operations are only possible with your express consent. You can revoke consent already given at any time. The legality of data processing carried out before the revocation remains unaffected by the revocation.
+    </p>
+
+    <h3>Right to Object to Data Collection in Special Cases (Art. 21 GDPR)</h3>
+    <p>
+      If data processing is based on Art. 6(1)(e) or (f) GDPR, you have the right at any time to object to the processing of your personal data for reasons arising from your particular situation. The respective legal basis on which processing is based can be found in this privacy policy. If you object, we will no longer process your affected personal data unless we can demonstrate compelling legitimate grounds for the processing that override your interests, rights, and freedoms (objection pursuant to Art. 21(1) GDPR).
+    </p>
+
+    <h3>Right to Lodge a Complaint with the Supervisory Authority</h3>
+    <p>
+      In the event of violations of the GDPR, data subjects have a right to lodge a complaint with a supervisory authority. The supervisory authority responsible for us is:
+    </p>
+    <p>
+      Berlin Commissioner for Data Protection and Freedom of Information<br>
+      Friedrichstra&szlig;e 219<br>
+      10969 Berlin<br>
+      <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener">https://www.datenschutz-berlin.de</a>
+    </p>
+
+    <h3>Right to Data Portability</h3>
+    <p>
+      You have the right to have data that we process automatically on the basis of your consent or in fulfillment of a contract handed over to you or to a third party in a common, machine-readable format. If you request the direct transfer of data to another controller, this will only be done to the extent that it is technically feasible.
+    </p>
+
+    <h3>Access, Correction, and Deletion</h3>
+    <p>
+      Within the framework of applicable legal provisions, you have the right at any time to free information about your stored personal data, its origin and recipients, and the purpose of data processing, and, if applicable, a right to correction or deletion of this data. You can contact us at any time regarding this and other questions on the subject of personal data.
+    </p>
+
+    <h3>Right to Restriction of Processing</h3>
+    <p>
+      You have the right to request the restriction of the processing of your personal data. You can contact us at any time for this purpose. The right to restriction of processing exists in the following cases:
+    </p>
+    <ul>
+      <li>If you dispute the accuracy of your personal data stored by us, we generally need time to verify this. For the duration of the verification, you have the right to request the restriction of processing of your personal data.</li>
+      <li>If the processing of your personal data was/is unlawful, you may request the restriction of data processing instead of deletion.</li>
+      <li>If we no longer need your personal data but you need it for the exercise, defense, or assertion of legal claims, you have the right to request restriction of processing instead of deletion.</li>
+      <li>If you have lodged an objection pursuant to Art. 21(1) GDPR, a balance must be struck between your interests and ours. As long as it has not been determined whose interests prevail, you have the right to request restriction of processing of your personal data.</li>
+    </ul>
+
+    <h3>SSL/TLS Encryption</h3>
+    <p>
+      This site uses SSL or TLS encryption for security reasons and to protect the transmission of confidential content, such as inquiries you send to us as the site operator. You can recognize an encrypted connection by the fact that the address bar of the browser changes from "http://" to "https://" and by the lock icon in your browser bar.
+    </p>
+    <p>
+      When SSL or TLS encryption is activated, the data you transmit to us cannot be read by third parties.
+    </p>
+
+    <h2>4. Data Collection on This Website</h2>
+
+    <h3>Server Log Files</h3>
+    <p>
+      The provider of the pages automatically collects and stores information in so-called server log files, which your browser automatically transmits to us. These are:
+    </p>
+    <ul>
+      <li>Browser type and version</li>
+      <li>Operating system used</li>
+      <li>Referrer URL</li>
+      <li>Hostname of the accessing computer</li>
+      <li>Time of the server request</li>
+      <li>IP address</li>
+    </ul>
+    <p>
+      This data is not merged with other data sources. The collection of this data is based on Art. 6(1)(f) GDPR. The website operator has a legitimate interest in the technically error-free presentation and optimization of its website &mdash; server log files must be collected for this purpose.
+    </p>
+
+    <h3>Inquiries by Email</h3>
+    <p>
+      If you contact us by email, your inquiry including all resulting personal data (name, inquiry) will be stored and processed by us for the purpose of handling your request. We do not pass on this data without your consent.
+    </p>
+    <p>
+      The processing of this data is based on Art. 6(1)(b) GDPR if your inquiry is related to the performance of a contract or is necessary for the implementation of pre-contractual measures. In all other cases, processing is based on our legitimate interest in the effective handling of inquiries directed to us (Art. 6(1)(f) GDPR) or on your consent (Art. 6(1)(a) GDPR) if this has been requested.
+    </p>
+    <p>
+      The data sent to us by email will remain with us until you request deletion, revoke your consent to storage, or the purpose for data storage no longer applies. Mandatory statutory provisions &mdash; in particular statutory retention periods &mdash; remain unaffected.
+    </p>
+
+    <h2>5. External Services</h2>
+
+    <h3>Google Fonts (External Loading)</h3>
+    <p>
+      This site uses Google Fonts for the uniform display of typefaces, provided by Google. When you access a page, your browser loads the required fonts into its cache to display text and typefaces correctly.
+    </p>
+    <p>
+      For this purpose, the browser you are using must connect to Google's servers. This gives Google knowledge that this website was accessed via your IP address. The use of Google Fonts is based on Art. 6(1)(f) GDPR. The website operator has a legitimate interest in the uniform presentation of the typeface on its website.
+    </p>
+    <p>
+      For more information on Google Fonts, see <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener">https://developers.google.com/fonts/faq</a> and Google's privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.
+    </p>
+    <p>
+      The company is certified under the "EU-US Data Privacy Framework" (DPF). More information: <a href="https://www.dataprivacyframework.gov/" target="_blank" rel="noopener">https://www.dataprivacyframework.gov/</a>.
+    </p>
+
+    <h3>Tailwind CSS (CDN)</h3>
+    <p>
+      This website uses the Tailwind CSS framework, which is loaded via a Content Delivery Network (CDN). When you access our pages, a connection to the CDN provider's servers is established to load the required files. Your IP address is transmitted to the CDN provider. This is based on Art. 6(1)(f) GDPR. We have a legitimate interest in a technically flawless and optimized presentation of our website.
+    </p>
+
+    <h2>6. Appointment Scheduling (Cal.com)</h2>
+    <p>
+      We use Cal.com (Cal.com, Inc., USA) for scheduling appointments. When booking, your name, email address, and selected time slot are transmitted to Cal.com. When loading the booking form, your IP address is also transmitted to Cal.com servers.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Purpose:</strong> Planning and conducting consultation calls.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis (booking data):</strong> Art. 6(1)(b) GDPR (performance of pre-contractual measures).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis (iframe loading):</strong> Art. 6(1)(a) GDPR (consent by clicking the booking button).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Transfer to the USA:</strong> Cal.com processes data in the USA. Privacy policy: <a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a>.
+    </p>
+
+    <h2>7. Video Conferencing (Google Meet)</h2>
+    <p>
+      For booked consultation calls, we use Google Meet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Ireland / Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Data processed:</strong> Name, email, IP address, audio/video data, meeting metadata.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis:</strong> Art. 6(1)(b) GDPR (performance of the booked consultation).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Transfer to the USA:</strong> Google LLC is certified under the EU-U.S. Data Privacy Framework (DPF). A data processing agreement (Google Workspace Data Processing Amendment) has been concluded.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Note:</strong> Calls are not recorded unless explicitly agreed to in advance.
+    </p>
+    <p>
+      Privacy policy: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+    </p>
+
+    <h2>8. CRM System (ClickUp)</h2>
+    <p>
+      Contact and booking data (name, email, meeting notes) is stored in our CRM system ClickUp (Mango Technologies Inc., USA).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis:</strong> Art. 6(1)(b)/(f) GDPR.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Retention:</strong> Booking data is deleted 6 months after the meeting date.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Transfer to the USA:</strong> ClickUp is certified under the DPF. DPA pursuant to Art. 28 GDPR has been concluded. <a href="https://clickup.com/privacy" target="_blank" rel="noopener">clickup.com/privacy</a>.
+    </p>
+
+    <h2>9. Email Communication</h2>
+    <p>
+      After a booking, you will receive confirmation and preparation emails.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis (booking confirmation):</strong> Art. 6(1)(b) GDPR.
+    </p>
+    <p>
+      With your express consent, we may also send tips, case studies, and offers.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Legal basis (marketing emails):</strong> Art. 6(1)(a) GDPR (consent). You can revoke this at any time.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Unsubscribe:</strong> At any time by replying to an email with "Unsubscribe" or by emailing <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Technical processing:</strong> Emails are sent via Gmail (Google LLC, USA) and Modal Labs (USA). Standard contractual clauses (SCCs) pursuant to Art. 46 GDPR have been concluded.
+    </p>
+
+    <h2>10. Data Processors</h2>
+    <p>
+      We use the following data processors:
+    </p>
+    <ul>
+      <li><strong style="color:rgba(232,228,240,0.7);">Hostinger</strong> (Hostinger International Ltd., Cyprus) &mdash; Hosting. IP address, browser data. DPA concluded. <a href="https://www.hostinger.com/privacy-policy" target="_blank" rel="noopener">hostinger.com/privacy-policy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Cal.com</strong> (Cal.com, Inc., USA) &mdash; Booking. Name, email, time slot. DPA / SCCs concluded. <a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Google</strong> (Google Ireland Ltd. / Google LLC) &mdash; Meet, Gmail. DPF-certified. Google Workspace DPA concluded. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">ClickUp</strong> (Mango Technologies Inc., USA) &mdash; CRM. Contact data, notes. DPF-certified. DPA concluded. <a href="https://clickup.com/privacy" target="_blank" rel="noopener">clickup.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Modal Labs</strong> (Modal Labs, Inc., USA) &mdash; Serverless infrastructure for automated AI workflows. IP address, processing data. SCCs pursuant to Art. 46 GDPR concluded. <a href="https://modal.com/privacy" target="_blank" rel="noopener">modal.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Trigger.dev</strong> (Trigger.dev, Inc., USA) &mdash; Background job orchestration for automated workflows. Processing data, metadata. SCCs pursuant to Art. 46 GDPR concluded. <a href="https://trigger.dev/legal/privacy" target="_blank" rel="noopener">trigger.dev/legal/privacy</a></li>
+    </ul>
+
+    <h2>11. Cookies, Tracking, and Fonts</h2>
+    <p>
+      This website does not use cookies, analytics tools, or tracking pixels. A cookie banner is not required.
+    </p>
+    <p>
+      Fonts (Outfit, DM Mono) are loaded via Google Fonts. Details can be found in Section 5 "Google Fonts (External Loading)".
+    </p>
+
+    <h2>12. Your Rights</h2>
+    <p>
+      You have the following rights regarding your personal data:
+    </p>
+    <ul>
+      <li>Right of access (Art. 15 GDPR)</li>
+      <li>Right to rectification (Art. 16 GDPR)</li>
+      <li>Right to erasure (Art. 17 GDPR)</li>
+      <li>Right to restriction of processing (Art. 18 GDPR)</li>
+      <li>Right to data portability (Art. 20 GDPR)</li>
+      <li>Right to object (Art. 21 GDPR)</li>
+      <li>Right to withdraw consent (Art. 7(3) GDPR)</li>
+    </ul>
+    <p>
+      To exercise your rights, contact: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Right to complain:</strong> You have the right to lodge a complaint with a data protection supervisory authority. The responsible authority is the Berlin Commissioner for Data Protection and Freedom of Information, Friedrichstr. 219, 10969 Berlin.
+    </p>
+
+    <h2>13. SSL/TLS Encryption</h2>
+    <p>
+      This website is served exclusively via HTTPS (TLS encryption). We implement appropriate technical and organizational measures (TOMs) to protect your data (Art. 32 GDPR).
+    </p>
+
+    <h2>14. Changes to This Policy</h2>
+    <p>
+      We reserve the right to update this privacy policy as needed. The current version is always available on this page. Last updated: April 2026.
+    </p>
+
+    <p style="margin-top:64px;color:rgba(232,228,240,0.3);font-size:13px;">
+      This privacy policy complies with GDPR requirements.
+    </p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(167,139,250,0.07);padding:36px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="flex items-center gap-0.5" style="flex:1;min-width:120px;">
+    <span class="font-outfit font-bold text-lg tracking-tight" style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+    </span>
+    <span class="diamond-sm relative -top-1.5 ml-0.5"></span>
+  </div>
+  <div style="display:flex;gap:24px;justify-content:center;">
+    <a href="privacy-policy.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Privacy Policy</a>
+    <a href="terms-of-service.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Terms of Service</a>
+  </div>
+  <div class="font-dm text-xs" style="color:rgba(232,228,240,0.18);letter-spacing:0.1em;flex:1;min-width:120px;text-align:right;">
+    &copy; 2026 LogiKube &middot; Intelligence, engineered.
+  </div>
+</footer>
+
+</body>
+</html>

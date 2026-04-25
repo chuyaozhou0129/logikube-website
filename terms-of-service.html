@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Service — LogiKube</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: { DEFAULT: '#a78bfa', dark: '#7c3aed', light: '#c4b5fd' },
+            deep: '#0e0715',
+            fg: '#e8e4f0',
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            dm: ['"DM Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0e0715; color: #e8e4f0; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0e0715; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.25); border-radius: 2px; }
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+    .logo-logi { opacity: 0.28; }
+    .logo-kube { opacity: 1; }
+    .diamond-sm { display: inline-block; width: 6px; height: 6px; background: #a78bfa; transform: rotate(45deg); }
+    .legal-body h2 { font-size: 20px; font-weight: 600; color: #e8e4f0; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .legal-body h3 { font-size: 16px; font-weight: 600; color: rgba(232,228,240,0.8); margin-top: 32px; margin-bottom: 12px; }
+    .legal-body p { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; margin-bottom: 16px; }
+    .legal-body a { color: #a78bfa; text-decoration: none; transition: color 0.2s; }
+    .legal-body a:hover { color: #c4b5fd; }
+    .legal-body ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+    .legal-body ul li { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; padding-left: 20px; position: relative; }
+    .legal-body ul li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; background: rgba(167,139,250,0.4); transform: rotate(45deg); }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-[200]">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="font-outfit font-bold text-xl tracking-tight flex items-center gap-0.5" style="letter-spacing:-0.03em; text-decoration:none; color:#e8e4f0;">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+      <span class="diamond-sm relative -top-2 ml-0.5"></span>
+    </a>
+    <a href="index.html" class="font-outfit text-sm font-medium" style="color:rgba(232,228,240,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.45)'">&larr; Back to home</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="max-w-3xl mx-auto px-6 pt-36 pb-24">
+  <div style="margin-bottom:12px;">
+    <span class="font-dm" style="font-size:11px;color:rgba(167,139,250,0.5);letter-spacing:0.25em;text-transform:uppercase;">Legal</span>
+  </div>
+  <h1 class="font-outfit font-bold tracking-tighter mb-16" style="font-size:clamp(36px,6vw,56px);letter-spacing:-2px;line-height:1.05;">Terms of Service</h1>
+
+  <div class="legal-body">
+
+    <h2>1. Scope and Applicability</h2>
+    <p>
+      These Terms of Service ("Terms") govern your access to and use of the website and services provided by LogiKube, operated by Chuyao Zhou, Proskauer Stra&szlig;e 21, 10247 Berlin, Germany ("we", "us", "our"). By accessing our website or engaging our services, you agree to these Terms.
+    </p>
+    <p>
+      If you are entering into these Terms on behalf of a company or other legal entity, you represent that you have the authority to bind such entity to these Terms.
+    </p>
+
+    <h2>2. Services</h2>
+    <p>
+      LogiKube provides AI consulting, development, and integration services. The specific scope, deliverables, timeline, and fees for any engagement are defined in a separate project agreement or statement of work ("SOW") agreed upon by both parties.
+    </p>
+    <p>
+      Services described on this website are for informational purposes and do not constitute a binding offer. A binding contractual relationship only arises upon mutual execution of a SOW or written agreement.
+    </p>
+
+    <h2>3. Discovery Calls</h2>
+    <p>
+      We offer free discovery calls to discuss potential projects. These calls are non-binding and do not create any obligation on either party. Any information shared during discovery calls remains subject to our <a href="privacy-policy.html">Privacy Policy</a>.
+    </p>
+
+    <h2>4. Intellectual Property</h2>
+
+    <h3>Website Content</h3>
+    <p>
+      All content on this website &mdash; including text, graphics, logos, icons, images, and software &mdash; is the property of LogiKube or its content suppliers and is protected by international copyright laws. Unauthorized reproduction, distribution, or modification is prohibited.
+    </p>
+
+    <h3>Project Deliverables</h3>
+    <p>
+      Ownership of project deliverables (code, models, documentation) is governed by the applicable SOW. Unless otherwise agreed in writing, upon full payment, the client receives a perpetual, non-exclusive license to use the deliverables for their intended purpose.
+    </p>
+
+    <h3>Pre-Existing IP</h3>
+    <p>
+      Each party retains ownership of its pre-existing intellectual property. LogiKube retains the right to reuse general frameworks, methodologies, and non-client-specific components developed during engagements.
+    </p>
+
+    <h2>5. Confidentiality</h2>
+    <p>
+      Both parties agree to treat as confidential any non-public information received from the other party during the course of an engagement. This obligation survives termination of the engagement for a period of two (2) years.
+    </p>
+    <p>
+      Confidentiality obligations do not apply to information that: (a) is or becomes publicly available through no fault of the receiving party; (b) was already known to the receiving party; (c) is independently developed without reference to confidential information; or (d) is required to be disclosed by law.
+    </p>
+
+    <h2>6. Limitation of Liability</h2>
+    <p>
+      To the maximum extent permitted by applicable law:
+    </p>
+    <ul>
+      <li>LogiKube's total liability for any claim arising from or related to these Terms or our services shall not exceed the total fees paid by you in the twelve (12) months preceding the claim.</li>
+      <li>In no event shall LogiKube be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of profits, data, business opportunities, or goodwill.</li>
+      <li>We are not liable for damages arising from the use or inability to use AI systems deployed as part of our services, including errors in AI-generated outputs or decisions.</li>
+    </ul>
+    <p>
+      These limitations do not apply to liability that cannot be excluded or limited under applicable law, including liability for willful misconduct or gross negligence.
+    </p>
+
+    <h2>7. Warranties and Disclaimers</h2>
+    <p>
+      We provide our services with reasonable skill and care. However, given the nature of AI systems:
+    </p>
+    <ul>
+      <li>We do not guarantee that AI systems will produce error-free results or achieve specific business outcomes.</li>
+      <li>AI model performance may vary based on data quality, environmental changes, and factors beyond our control.</li>
+      <li>This website and its content are provided "as is" without warranties of any kind, express or implied.</li>
+    </ul>
+
+    <h2>8. Data Protection</h2>
+    <p>
+      We process personal data in accordance with our <a href="privacy-policy.html">Privacy Policy</a> and applicable data protection laws, including the GDPR. For engagements involving the processing of personal data on behalf of the client, a separate Data Processing Agreement (DPA) will be concluded.
+    </p>
+
+    <h2>9. Payment Terms</h2>
+    <p>
+      Payment terms are defined in the applicable SOW. Unless otherwise agreed:
+    </p>
+    <ul>
+      <li>Invoices are due within 14 days of receipt.</li>
+      <li>All fees are quoted in EUR and are exclusive of applicable taxes.</li>
+      <li>Late payments accrue interest at the statutory rate.</li>
+    </ul>
+
+    <h2>10. Termination</h2>
+    <p>
+      Either party may terminate an engagement by providing 30 days' written notice. Upon termination:
+    </p>
+    <ul>
+      <li>The client shall pay for all services rendered up to the date of termination.</li>
+      <li>Each party shall return or destroy the other party's confidential information upon request.</li>
+      <li>Sections relating to intellectual property, confidentiality, limitation of liability, and governing law survive termination.</li>
+    </ul>
+
+    <h2>11. Force Majeure</h2>
+    <p>
+      Neither party shall be liable for any failure or delay in performance due to causes beyond its reasonable control, including but not limited to acts of God, natural disasters, pandemics, war, terrorism, government actions, power failures, internet disruptions, or third-party service outages.
+    </p>
+
+    <h2>12. Modifications</h2>
+    <p>
+      We reserve the right to modify these Terms at any time. Material changes will be communicated via our website. Continued use of our services after such modifications constitutes acceptance of the updated Terms.
+    </p>
+
+    <h2>13. Governing Law and Jurisdiction</h2>
+    <p>
+      These Terms are governed by and construed in accordance with the laws of the Federal Republic of Germany. The exclusive place of jurisdiction for all disputes arising from or in connection with these Terms is Berlin, Germany, unless mandatory consumer protection provisions require otherwise.
+    </p>
+
+    <h2>14. Severability</h2>
+    <p>
+      If any provision of these Terms is held to be invalid or unenforceable, the remaining provisions shall continue in full force and effect. The invalid provision shall be replaced by a valid provision that most closely achieves the intended economic purpose.
+    </p>
+
+    <h2>15. Contact</h2>
+    <p>
+      For questions regarding these Terms of Service, please contact:
+    </p>
+    <p>
+      Chuyao Zhou<br>
+      LogiKube<br>
+      Proskauer Stra&szlig;e 21<br>
+      10247 Berlin, Germany<br>
+      Email: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+
+    <p style="margin-top:64px;color:rgba(232,228,240,0.3);font-size:13px;">
+      Last updated: April 2026.
+    </p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(167,139,250,0.07);padding:36px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="flex items-center gap-0.5" style="flex:1;min-width:120px;">
+    <span class="font-outfit font-bold text-lg tracking-tight" style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+    </span>
+    <span class="diamond-sm relative -top-1.5 ml-0.5"></span>
+  </div>
+  <div style="display:flex;gap:24px;justify-content:center;">
+    <a href="privacy-policy.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Privacy Policy</a>
+    <a href="terms-of-service.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Terms of Service</a>
+  </div>
+  <div class="font-dm text-xs" style="color:rgba(232,228,240,0.18);letter-spacing:0.1em;flex:1;min-width:120px;text-align:right;">
+    &copy; 2026 LogiKube &middot; Intelligence, engineered.
+  </div>
+</footer>
+
+</body>
+</html>

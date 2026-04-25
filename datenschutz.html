@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Datenschutzerklärung — LogiKube</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            violet: { DEFAULT: '#a78bfa', dark: '#7c3aed', light: '#c4b5fd' },
+            deep: '#0e0715',
+            fg: '#e8e4f0',
+          },
+          fontFamily: {
+            outfit: ['Outfit', 'sans-serif'],
+            dm: ['"DM Mono"', 'monospace'],
+          },
+        },
+      },
+    };
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: #0e0715; color: #e8e4f0; overflow-x: hidden; }
+    ::-webkit-scrollbar { width: 3px; }
+    ::-webkit-scrollbar-track { background: #0e0715; }
+    ::-webkit-scrollbar-thumb { background: rgba(167,139,250,0.25); border-radius: 2px; }
+    .grain-overlay {
+      position: fixed; inset: 0; z-index: 9999; pointer-events: none; opacity: 0.03;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 128px 128px;
+    }
+    .logo-logi { opacity: 0.28; }
+    .logo-kube { opacity: 1; }
+    .diamond-sm { display: inline-block; width: 6px; height: 6px; background: #a78bfa; transform: rotate(45deg); }
+    .legal-body h2 { font-size: 20px; font-weight: 600; color: #e8e4f0; margin-top: 48px; margin-bottom: 16px; letter-spacing: -0.5px; }
+    .legal-body h3 { font-size: 16px; font-weight: 600; color: rgba(232,228,240,0.8); margin-top: 32px; margin-bottom: 12px; }
+    .legal-body p { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; margin-bottom: 16px; }
+    .legal-body a { color: #a78bfa; text-decoration: none; transition: color 0.2s; }
+    .legal-body a:hover { color: #c4b5fd; }
+    .legal-body ul { list-style: none; padding-left: 0; margin-bottom: 16px; }
+    .legal-body ul li { font-size: 15px; font-weight: 300; color: rgba(232,228,240,0.52); line-height: 1.8; padding-left: 20px; position: relative; }
+    .legal-body ul li::before { content: ''; position: absolute; left: 4px; top: 11px; width: 5px; height: 5px; background: rgba(167,139,250,0.4); transform: rotate(45deg); }
+  </style>
+</head>
+<body>
+
+<div class="grain-overlay"></div>
+
+<!-- NAV -->
+<nav class="fixed top-0 left-0 right-0 z-[200]">
+  <div class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between">
+    <a href="index.html" class="font-outfit font-bold text-xl tracking-tight flex items-center gap-0.5" style="letter-spacing:-0.03em; text-decoration:none; color:#e8e4f0;">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+      <span class="diamond-sm relative -top-2 ml-0.5"></span>
+    </a>
+    <a href="index.html" class="font-outfit text-sm font-medium" style="color:rgba(232,228,240,0.45);text-decoration:none;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.45)'">&larr; Zurück zur Startseite</a>
+  </div>
+</nav>
+
+<!-- CONTENT -->
+<main class="max-w-3xl mx-auto px-6 pt-36 pb-24">
+  <div style="margin-bottom:12px;">
+    <span class="font-dm" style="font-size:11px;color:rgba(167,139,250,0.5);letter-spacing:0.25em;text-transform:uppercase;">Rechtliches</span>
+  </div>
+  <h1 class="font-outfit font-bold tracking-tighter mb-16" style="font-size:clamp(36px,6vw,56px);letter-spacing:-2px;line-height:1.05;">Datenschutz&shy;erklärung</h1>
+
+  <div class="legal-body">
+
+    <h2>1. Datenschutz auf einen Blick</h2>
+
+    <h3>Allgemeine Hinweise</h3>
+    <p>
+      Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer nachfolgend aufgeführten Datenschutzerklärung.
+    </p>
+
+    <h3>Datenerfassung auf dieser Website</h3>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Wer ist verantwortlich für die Datenerfassung auf dieser Website?</strong><br>
+      Die Datenverarbeitung auf dieser Website erfolgt durch den Websitebetreiber. Dessen Kontaktdaten können Sie dem Abschnitt „Hinweis zur verantwortlichen Stelle" in dieser Datenschutzerklärung entnehmen.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Wie erfassen wir Ihre Daten?</strong><br>
+      Ihre Daten werden zum einen dadurch erhoben, dass Sie uns diese mitteilen. Hierbei kann es sich z.&nbsp;B. um Daten handeln, die Sie in ein Kontaktformular eingeben oder per E-Mail senden. Andere Daten werden automatisch oder nach Ihrer Einwilligung beim Besuch der Website durch unsere IT-Systeme erfasst. Das sind vor allem technische Daten (z.&nbsp;B. Internetbrowser, Betriebssystem oder Uhrzeit des Seitenaufrufs). Die Erfassung dieser Daten erfolgt automatisch, sobald Sie diese Website betreten.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Wofür nutzen wir Ihre Daten?</strong><br>
+      Ein Teil der Daten wird erhoben, um eine fehlerfreie Bereitstellung der Website zu gewährleisten. Andere Daten können zur Analyse Ihres Nutzerverhaltens verwendet werden.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Welche Rechte haben Sie bezüglich Ihrer Daten?</strong><br>
+      Sie haben jederzeit das Recht, unentgeltlich Auskunft über Herkunft, Empfänger und Zweck Ihrer gespeicherten personenbezogenen Daten zu erhalten. Sie haben außerdem ein Recht, die Berichtigung oder Löschung dieser Daten zu verlangen. Wenn Sie eine Einwilligung zur Datenverarbeitung erteilt haben, können Sie diese Einwilligung jederzeit für die Zukunft widerrufen. Außerdem haben Sie das Recht, unter bestimmten Umständen die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Des Weiteren steht Ihnen ein Beschwerderecht bei der zuständigen Aufsichtsbehörde zu.
+    </p>
+    <p>
+      Hierzu sowie zu weiteren Fragen zum Thema Datenschutz können Sie sich jederzeit an uns wenden.
+    </p>
+
+    <h2>2. Hosting</h2>
+    <p>
+      Wir hosten die Inhalte unserer Website bei folgendem Anbieter:
+    </p>
+
+    <h3>Hostinger</h3>
+    <p>
+      Anbieter ist die Hostinger International Ltd., 61 Lordou Vironos Street, 6023 Larnaca, Zypern (nachfolgend „Hostinger").
+    </p>
+    <p>
+      Wenn Sie unsere Website besuchen, erfasst Hostinger verschiedene Logfiles inklusive Ihrer IP-Adressen. Details entnehmen Sie der Datenschutzerklärung von Hostinger: <a href="https://www.hostinger.de/datenschutzrichtlinie" target="_blank" rel="noopener">https://www.hostinger.de/datenschutzrichtlinie</a>.
+    </p>
+    <p>
+      Die Verwendung von Hostinger erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer möglichst zuverlässigen Darstellung unserer Website. Sofern eine entsprechende Einwilligung abgefragt wurde, erfolgt die Verarbeitung ausschließlich auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO. Die Einwilligung ist jederzeit widerrufbar.
+    </p>
+
+    <h3>Auftragsverarbeitung</h3>
+    <p>
+      Wir haben einen Vertrag über Auftragsverarbeitung (AVV) zur Nutzung des oben genannten Dienstes geschlossen. Hierbei handelt es sich um einen datenschutzrechtlich vorgeschriebenen Vertrag, der gewährleistet, dass dieser die personenbezogenen Daten unserer Websitebesucher nur nach unseren Weisungen und unter Einhaltung der DSGVO verarbeitet.
+    </p>
+
+    <h2>3. Allgemeine Hinweise und Pflichtinformationen</h2>
+
+    <h3>Datenschutz</h3>
+    <p>
+      Die Betreiber dieser Seiten nehmen den Schutz Ihrer persönlichen Daten sehr ernst. Wir behandeln Ihre personenbezogenen Daten vertraulich und entsprechend der gesetzlichen Datenschutzvorschriften sowie dieser Datenschutzerklärung.
+    </p>
+    <p>
+      Wenn Sie diese Website benutzen, werden verschiedene personenbezogene Daten erhoben. Personenbezogene Daten sind Daten, mit denen Sie persönlich identifiziert werden können. Die vorliegende Datenschutzerklärung erläutert, welche Daten wir erheben und wofür wir sie nutzen. Sie erläutert auch, wie und zu welchem Zweck das geschieht.
+    </p>
+    <p>
+      Wir weisen darauf hin, dass die Datenübertragung im Internet (z.&nbsp;B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.
+    </p>
+
+    <h3>Hinweis zur verantwortlichen Stelle</h3>
+    <p>
+      Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:
+    </p>
+    <p>
+      Chuyao Zhou<br>
+      Proskauer Straße 21<br>
+      10247 Berlin<br>
+      Deutschland
+    </p>
+    <p>
+      E-Mail: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+    <p>
+      Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.&nbsp;B. Namen, E-Mail-Adressen o.&nbsp;Ä.) entscheidet.
+    </p>
+
+    <h3>Speicherdauer</h3>
+    <p>
+      Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben; in letzterem Fall erfolgt die Löschung nach Fortfall dieser Gründe.
+    </p>
+
+    <h3>Allgemeine Hinweise zu den Rechtsgrundlagen der Datenverarbeitung auf dieser Website</h3>
+    <p>
+      Sofern Sie in die Datenverarbeitung eingewilligt haben, verarbeiten wir Ihre personenbezogenen Daten auf Grundlage von Art. 6 Abs. 1 lit. a DSGVO bzw. Art. 9 Abs. 2 lit. a DSGVO, sofern besondere Datenkategorien nach Art. 9 Abs. 1 DSGVO verarbeitet werden. Im Falle einer ausdrücklichen Einwilligung in die Übertragung personenbezogener Daten in Drittstaaten erfolgt die Datenverarbeitung außerdem auf Grundlage von Art. 49 Abs. 1 lit. a DSGVO. Sofern die Datenverarbeitung zur Vertragserfüllung oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist, verarbeiten wir Ihre Daten auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO. Des Weiteren verarbeiten wir Ihre Daten, sofern diese zur Erfüllung einer rechtlichen Verpflichtung erforderlich sind, auf Grundlage von Art. 6 Abs. 1 lit. c DSGVO. Die Datenverarbeitung kann ferner auf Grundlage unseres berechtigten Interesses nach Art. 6 Abs. 1 lit. f DSGVO erfolgen.
+    </p>
+
+    <h3>Widerruf Ihrer Einwilligung zur Datenverarbeitung</h3>
+    <p>
+      Viele Datenverarbeitungsvorgänge sind nur mit Ihrer ausdrücklichen Einwilligung möglich. Sie können eine bereits erteilte Einwilligung jederzeit widerrufen. Die Rechtmäßigkeit der bis zum Widerruf erfolgten Datenverarbeitung bleibt vom Widerruf unberührt.
+    </p>
+
+    <h3>Widerspruchsrecht gegen die Datenerhebung in besonderen Fällen (Art. 21 DSGVO)</h3>
+    <p>
+      Wenn die Datenverarbeitung auf Grundlage von Art. 6 Abs. 1 lit. e oder f DSGVO erfolgt, haben Sie jederzeit das Recht, aus Gründen, die sich aus Ihrer besonderen Situation ergeben, gegen die Verarbeitung Ihrer personenbezogenen Daten Widerspruch einzulegen. Die jeweilige Rechtsgrundlage, auf der eine Verarbeitung beruht, entnehmen Sie dieser Datenschutzerklärung. Wenn Sie Widerspruch einlegen, werden wir Ihre betroffenen personenbezogenen Daten nicht mehr verarbeiten, es sei denn, wir können zwingende schutzwürdige Gründe für die Verarbeitung nachweisen, die Ihre Interessen, Rechte und Freiheiten überwiegen (Widerspruch nach Art. 21 Abs. 1 DSGVO).
+    </p>
+
+    <h3>Beschwerderecht bei der zuständigen Aufsichtsbehörde</h3>
+    <p>
+      Im Falle von Verstößen gegen die DSGVO steht den Betroffenen ein Beschwerderecht bei einer Aufsichtsbehörde zu. Die für uns zuständige Aufsichtsbehörde ist:
+    </p>
+    <p>
+      Berliner Beauftragte für Datenschutz und Informationsfreiheit<br>
+      Friedrichstraße 219<br>
+      10969 Berlin<br>
+      <a href="https://www.datenschutz-berlin.de" target="_blank" rel="noopener">https://www.datenschutz-berlin.de</a>
+    </p>
+
+    <h3>Recht auf Datenübertragbarkeit</h3>
+    <p>
+      Sie haben das Recht, Daten, die wir auf Grundlage Ihrer Einwilligung oder in Erfüllung eines Vertrags automatisiert verarbeiten, an sich oder an einen Dritten in einem gängigen, maschinenlesbaren Format aushändigen zu lassen. Sofern Sie die direkte Übertragung der Daten an einen anderen Verantwortlichen verlangen, erfolgt dies nur, soweit es technisch machbar ist.
+    </p>
+
+    <h3>Auskunft, Berichtigung und Löschung</h3>
+    <p>
+      Sie haben im Rahmen der geltenden gesetzlichen Bestimmungen jederzeit das Recht auf unentgeltliche Auskunft über Ihre gespeicherten personenbezogenen Daten, deren Herkunft und Empfänger und den Zweck der Datenverarbeitung und ggf. ein Recht auf Berichtigung oder Löschung dieser Daten. Hierzu sowie zu weiteren Fragen zum Thema personenbezogene Daten können Sie sich jederzeit an uns wenden.
+    </p>
+
+    <h3>Recht auf Einschränkung der Verarbeitung</h3>
+    <p>
+      Sie haben das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen. Hierzu können Sie sich jederzeit an uns wenden. Das Recht auf Einschränkung der Verarbeitung besteht in folgenden Fällen:
+    </p>
+    <ul>
+      <li>Wenn Sie die Richtigkeit Ihrer bei uns gespeicherten personenbezogenen Daten bestreiten, benötigen wir in der Regel Zeit, um dies zu überprüfen. Für die Dauer der Prüfung haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+      <li>Wenn die Verarbeitung Ihrer personenbezogenen Daten unrechtmäßig geschah/geschieht, können Sie statt der Löschung die Einschränkung der Datenverarbeitung verlangen.</li>
+      <li>Wenn wir Ihre personenbezogenen Daten nicht mehr benötigen, Sie sie jedoch zur Ausübung, Verteidigung oder Geltendmachung von Rechtsansprüchen benötigen, haben Sie das Recht, statt der Löschung die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+      <li>Wenn Sie einen Widerspruch nach Art. 21 Abs. 1 DSGVO eingelegt haben, muss eine Abwägung zwischen Ihren und unseren Interessen vorgenommen werden. Solange noch nicht feststeht, wessen Interessen überwiegen, haben Sie das Recht, die Einschränkung der Verarbeitung Ihrer personenbezogenen Daten zu verlangen.</li>
+    </ul>
+
+    <h3>SSL- bzw. TLS-Verschlüsselung</h3>
+    <p>
+      Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte, wie zum Beispiel Anfragen, die Sie an uns als Seitenbetreiber senden, eine SSL- bzw. TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennen Sie daran, dass die Adresszeile des Browsers von „http://" auf „https://" wechselt und an dem Schloss-Symbol in Ihrer Browserzeile.
+    </p>
+    <p>
+      Wenn die SSL- bzw. TLS-Verschlüsselung aktiviert ist, können die Daten, die Sie an uns übermitteln, nicht von Dritten mitgelesen werden.
+    </p>
+
+    <h2>4. Datenerfassung auf dieser Website</h2>
+
+    <h3>Server-Log-Dateien</h3>
+    <p>
+      Der Provider der Seiten erhebt und speichert automatisch Informationen in so genannten Server-Log-Dateien, die Ihr Browser automatisch an uns übermittelt. Dies sind:
+    </p>
+    <ul>
+      <li>Browsertyp und Browserversion</li>
+      <li>verwendetes Betriebssystem</li>
+      <li>Referrer URL</li>
+      <li>Hostname des zugreifenden Rechners</li>
+      <li>Uhrzeit der Serveranfrage</li>
+      <li>IP-Adresse</li>
+    </ul>
+    <p>
+      Eine Zusammenführung dieser Daten mit anderen Datenquellen wird nicht vorgenommen. Die Erfassung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der technisch fehlerfreien Darstellung und der Optimierung seiner Website — hierzu müssen die Server-Log-Dateien erfasst werden.
+    </p>
+
+    <h3>Anfrage per E-Mail</h3>
+    <p>
+      Wenn Sie uns per E-Mail kontaktieren, wird Ihre Anfrage inklusive aller daraus hervorgehenden personenbezogenen Daten (Name, Anfrage) zum Zwecke der Bearbeitung Ihres Anliegens bei uns gespeichert und verarbeitet. Diese Daten geben wir nicht ohne Ihre Einwilligung weiter.
+    </p>
+    <p>
+      Die Verarbeitung dieser Daten erfolgt auf Grundlage von Art. 6 Abs. 1 lit. b DSGVO, sofern Ihre Anfrage mit der Erfüllung eines Vertrags zusammenhängt oder zur Durchführung vorvertraglicher Maßnahmen erforderlich ist. In allen übrigen Fällen beruht die Verarbeitung auf unserem berechtigten Interesse an der effektiven Bearbeitung der an uns gerichteten Anfragen (Art. 6 Abs. 1 lit. f DSGVO) oder auf Ihrer Einwilligung (Art. 6 Abs. 1 lit. a DSGVO), sofern diese abgefragt wurde.
+    </p>
+    <p>
+      Die von Ihnen an uns per E-Mail gesendeten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt. Zwingende gesetzliche Bestimmungen — insbesondere gesetzliche Aufbewahrungsfristen — bleiben unberührt.
+    </p>
+
+    <h2>5. Externe Dienste</h2>
+
+    <h3>Google Fonts (externer Bezug)</h3>
+    <p>
+      Diese Seite nutzt zur einheitlichen Darstellung von Schriftarten so genannte Google Fonts, die von Google bereitgestellt werden. Beim Aufruf einer Seite lädt Ihr Browser die benötigten Fonts in Ihren Browsercache, um Texte und Schriftarten korrekt anzuzeigen.
+    </p>
+    <p>
+      Zu diesem Zweck muss der von Ihnen verwendete Browser Verbindung zu den Servern von Google aufnehmen. Hierdurch erlangt Google Kenntnis darüber, dass über Ihre IP-Adresse diese Website aufgerufen wurde. Die Nutzung von Google Fonts erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Der Websitebetreiber hat ein berechtigtes Interesse an der einheitlichen Darstellung des Schriftbildes auf seiner Website.
+    </p>
+    <p>
+      Weitere Informationen zu Google Fonts finden Sie unter <a href="https://developers.google.com/fonts/faq" target="_blank" rel="noopener">https://developers.google.com/fonts/faq</a> und in der Datenschutzerklärung von Google: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">https://policies.google.com/privacy</a>.
+    </p>
+    <p>
+      Das Unternehmen verfügt über eine Zertifizierung nach dem „EU-US Data Privacy Framework" (DPF). Weitere Informationen hierzu finden Sie unter: <a href="https://www.dataprivacyframework.gov/" target="_blank" rel="noopener">https://www.dataprivacyframework.gov/</a>.
+    </p>
+
+    <h3>Tailwind CSS (CDN)</h3>
+    <p>
+      Diese Website nutzt das CSS-Framework Tailwind CSS, das über ein Content Delivery Network (CDN) eingebunden wird. Beim Aufruf unserer Seiten wird eine Verbindung zu Servern des CDN-Anbieters hergestellt, um die benötigten Dateien zu laden. Dabei wird Ihre IP-Adresse an den CDN-Anbieter übermittelt. Dies erfolgt auf Grundlage von Art. 6 Abs. 1 lit. f DSGVO. Wir haben ein berechtigtes Interesse an einer technisch einwandfreien und optimierten Darstellung unserer Website.
+    </p>
+
+    <h2>6. Terminbuchung (Cal.com)</h2>
+    <p>
+      Wir verwenden Cal.com (Cal.com, Inc., USA) zur Terminvereinbarung. Bei der Buchung werden Name, E-Mail-Adresse und gewählter Zeitslot an Cal.com übermittelt. Beim Laden des Buchungsformulars wird zudem die IP-Adresse an Cal.com-Server übertragen.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Zweck:</strong> Planung und Durchführung von Beratungsgesprächen.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage (Buchungsdaten):</strong> Art. 6 Abs. 1 lit. b DSGVO (Durchführung vorvertraglicher Maßnahmen).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage (Iframe-Laden):</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung durch Klick auf den Buchungsbutton).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Übermittlung in die USA:</strong> Cal.com verarbeitet Daten in den USA. Datenschutzerklärung: <a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a>.
+    </p>
+
+    <h2>7. Videokonferenzen (Google Meet)</h2>
+    <p>
+      Für gebuchte Beratungsgespräche verwenden wir Google Meet (Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland / Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Verarbeitete Daten:</strong> Name, E-Mail, IP-Adresse, Audio-/Videodaten, Meeting-Metadaten.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b DSGVO (Durchführung des gebuchten Gesprächs).
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Übermittlung in die USA:</strong> Google LLC ist unter dem EU-U.S. Data Privacy Framework (DPF) zertifiziert. Ein Auftragsverarbeitungsvertrag (Google Workspace Data Processing Amendment) ist abgeschlossen.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Hinweis:</strong> Gespräche werden nicht aufgezeichnet, es sei denn, es wird vorab ausdrücklich zugestimmt.
+    </p>
+    <p>
+      Datenschutzerklärung: <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a>.
+    </p>
+
+    <h2>8. CRM-System (ClickUp)</h2>
+    <p>
+      Kontakt- und Buchungsdaten (Name, E-Mail, Gesprächsnotizen) werden in unserem CRM-System ClickUp (Mango Technologies Inc., USA) gespeichert.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage:</strong> Art. 6 Abs. 1 lit. b/f DSGVO.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Aufbewahrung:</strong> Buchungsdaten werden 6 Monate nach dem Gesprächsdatum gelöscht.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Übermittlung in die USA:</strong> ClickUp ist unter dem DPF zertifiziert. AVV gem. Art. 28 DSGVO ist abgeschlossen. <a href="https://clickup.com/privacy" target="_blank" rel="noopener">clickup.com/privacy</a>.
+    </p>
+
+    <h2>9. E-Mail-Kommunikation</h2>
+    <p>
+      Nach einer Buchung erhalten Sie Bestätigungs- und Vorbereitungsmails.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage (Buchungsbestätigung):</strong> Art. 6 Abs. 1 lit. b DSGVO.
+    </p>
+    <p>
+      Mit ausdrücklicher Einwilligung senden wir ggf. auch Tipps, Fallstudien und Angebote.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Rechtsgrundlage (Marketing-Mails):</strong> Art. 6 Abs. 1 lit. a DSGVO (Einwilligung). Sie können diese jederzeit widerrufen.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Abmeldung:</strong> Jederzeit per Antwort auf eine E-Mail mit „Abmelden" oder per E-Mail an <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>.
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Technische Verarbeitung:</strong> E-Mails werden über Gmail (Google LLC, USA) und Modal Labs (USA) versendet. Standardvertragsklauseln (SCCs) gem. Art. 46 DSGVO sind jeweils abgeschlossen.
+    </p>
+
+    <h2>10. Auftragsverarbeiter</h2>
+    <p>
+      Wir setzen folgende Auftragsverarbeiter ein:
+    </p>
+    <ul>
+      <li><strong style="color:rgba(232,228,240,0.7);">Hostinger</strong> (Hostinger International Ltd., Zypern) — Hosting. IP-Adresse, Browserdaten. AVV abgeschlossen. <a href="https://www.hostinger.de/datenschutzrichtlinie" target="_blank" rel="noopener">hostinger.de/datenschutzrichtlinie</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Cal.com</strong> (Cal.com, Inc., USA) — Buchung. Name, E-Mail, Zeitslot. AVV / SCCs abgeschlossen. <a href="https://cal.com/privacy" target="_blank" rel="noopener">cal.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Google</strong> (Google Ireland Ltd. / Google LLC) — Meet, Gmail. DPF-zertifiziert. Google Workspace DPA abgeschlossen. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">policies.google.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">ClickUp</strong> (Mango Technologies Inc., USA) — CRM. Kontaktdaten, Notizen. DPF-zertifiziert. AVV abgeschlossen. <a href="https://clickup.com/privacy" target="_blank" rel="noopener">clickup.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Modal Labs</strong> (Modal Labs, Inc., USA) — Serverlose Infrastruktur für automatisierte AI-Workflows. IP-Adresse, Verarbeitungsdaten. SCCs gem. Art. 46 DSGVO abgeschlossen. <a href="https://modal.com/privacy" target="_blank" rel="noopener">modal.com/privacy</a></li>
+      <li><strong style="color:rgba(232,228,240,0.7);">Trigger.dev</strong> (Trigger.dev, Inc., USA) — Hintergrund-Job-Orchestrierung für automatisierte Workflows. Verarbeitungsdaten, Metadaten. SCCs gem. Art. 46 DSGVO abgeschlossen. <a href="https://trigger.dev/legal/privacy" target="_blank" rel="noopener">trigger.dev/legal/privacy</a></li>
+    </ul>
+
+    <h2>11. Cookies, Tracking und Schriftarten</h2>
+    <p>
+      Diese Website verwendet keine Cookies, Analyse-Tools oder Tracking-Pixel. Ein Cookie-Banner ist nicht erforderlich (§ 25 TDDDG).
+    </p>
+    <p>
+      Schriftarten (Outfit, DM Mono) werden über Google Fonts geladen. Details hierzu finden Sie unter Abschnitt 5 „Google Fonts (externer Bezug)".
+    </p>
+
+    <h2>12. Ihre Rechte</h2>
+    <p>
+      Sie haben folgende Rechte bezüglich Ihrer personenbezogenen Daten:
+    </p>
+    <ul>
+      <li>Auskunftsrecht (Art. 15 DSGVO)</li>
+      <li>Recht auf Berichtigung (Art. 16 DSGVO)</li>
+      <li>Recht auf Löschung (Art. 17 DSGVO)</li>
+      <li>Recht auf Einschränkung der Verarbeitung (Art. 18 DSGVO)</li>
+      <li>Recht auf Datenübertragbarkeit (Art. 20 DSGVO)</li>
+      <li>Widerspruchsrecht (Art. 21 DSGVO)</li>
+      <li>Recht auf Widerruf der Einwilligung (Art. 7 Abs. 3 DSGVO)</li>
+    </ul>
+    <p>
+      Zur Ausübung Ihrer Rechte kontaktieren Sie: <a href="mailto:chuyo.zhou@logikube.com">chuyo.zhou@logikube.com</a>
+    </p>
+    <p>
+      <strong style="color:rgba(232,228,240,0.7);">Beschwerderecht:</strong> Sie haben das Recht, sich bei einer Datenschutz-Aufsichtsbehörde zu beschweren. Zuständig ist die Berliner Beauftragte für Datenschutz und Informationsfreiheit, Friedrichstr. 219, 10969 Berlin.
+    </p>
+
+    <h2>13. SSL-/TLS-Verschlüsselung</h2>
+    <p>
+      Diese Website wird ausschließlich über HTTPS (TLS-Verschlüsselung) ausgeliefert. Wir setzen angemessene technische und organisatorische Maßnahmen (TOMs) zum Schutz Ihrer Daten ein (Art. 32 DSGVO).
+    </p>
+
+    <h2>14. Änderungen dieser Erklärung</h2>
+    <p>
+      Wir behalten uns vor, diese Datenschutzerklärung bei Bedarf zu aktualisieren. Die aktuelle Fassung ist stets auf dieser Seite verfügbar. Zuletzt aktualisiert: April 2026.
+    </p>
+
+    <p style="margin-top:64px;color:rgba(232,228,240,0.3);font-size:13px;">
+      Quelle: Eigene Erstellung in Anlehnung an e-recht24.de
+    </p>
+  </div>
+</main>
+
+<!-- FOOTER -->
+<footer style="border-top:1px solid rgba(167,139,250,0.07);padding:36px 40px;display:flex;align-items:center;flex-wrap:wrap;gap:16px;">
+  <div class="flex items-center gap-0.5" style="flex:1;min-width:120px;">
+    <span class="font-outfit font-bold text-lg tracking-tight" style="letter-spacing:-0.03em">
+      <span class="logo-logi">LOGI</span><span class="logo-kube">KUBE</span>
+    </span>
+    <span class="diamond-sm relative -top-1.5 ml-0.5"></span>
+  </div>
+  <div style="display:flex;gap:24px;justify-content:center;">
+    <a href="impressum.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Impressum</a>
+    <a href="datenschutz.html" class="font-dm text-xs" style="color:rgba(232,228,240,0.22);text-decoration:none;letter-spacing:0.07em;transition:color 0.2s;" onmouseenter="this.style.color='#a78bfa'" onmouseleave="this.style.color='rgba(232,228,240,0.22)'">Datenschutz</a>
+  </div>
+  <div class="font-dm text-xs" style="color:rgba(232,228,240,0.18);letter-spacing:0.1em;flex:1;min-width:120px;text-align:right;">
+    &copy; 2026 LogiKube &middot; Intelligence, engineered.
+  </div>
+</footer>
+
+</body>
+</html>
