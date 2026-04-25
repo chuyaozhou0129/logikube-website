@@ -6,11 +6,11 @@ export default defineConfig({
     rollupOptions: {
       input: {
         main: resolve(__dirname, 'index.html'),
-        de: resolve(__dirname, 'index-de.html'),
-        impressum: resolve(__dirname, 'impressum.html'),
-        datenschutz: resolve(__dirname, 'datenschutz.html'),
-        privacy: resolve(__dirname, 'privacy-policy.html'),
-        terms: resolve(__dirname, 'terms-of-service.html'),
+        de: resolve(__dirname, 'de/index.html'),
+        impressum: resolve(__dirname, 'impressum/index.html'),
+        datenschutz: resolve(__dirname, 'datenschutz/index.html'),
+        privacy: resolve(__dirname, 'privacy-policy/index.html'),
+        terms: resolve(__dirname, 'terms-of-service/index.html'),
       },
     },
   },
